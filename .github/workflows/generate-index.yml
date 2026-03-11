@@ -17,7 +17,7 @@ jobs:
       - name: Find HTML report files
         run: |
           # 找到所有 .html 文件（排除 .git 目录、docs/index.html 本身 与 .github 目录）
-          find . -maxdepth 3 -type f -name "*.html" ! -path "./.git/*" ! -path "./docs/index.html" ! -path "./.github/*" | sed 's|^\./||' | sort > ./files.txt
+          find . -type f -name "*.html" ! -path "./.git/*" ! -path "./docs/index.html" ! -path "./.github/*" | sed 's|^\./||' | sort > ./files.txt
           echo "Found files:"
           cat files.txt
 
