@@ -1,5 +1,8 @@
 # Add this file at: .github/workflows/generate-index.yml
 name: Generate reports index
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ main ]
@@ -13,13 +16,25 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: true
+
+      - name: Debug info
+        run: |
+          echo "GITHUB_ACTOR=$GITHUB_ACTOR"
+          echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
+          echo "Listing workspace root:"
+          ls -la || true
+          echo "Current branch:"
+          git branch --show-current || true
+          echo "Git remotes:"
+          git remote -v || true
 
       - name: Find HTML report files
         run: |
-          # 找到所有 .html 文件（排除 .git 目录、docs/index.html 本身 与 .github 目录）
+          # 找到所有 .html 文件（排除 .git、docs/index.html、.github）
           find . -type f -name "*.html" ! -path "./.git/*" ! -path "./docs/index.html" ! -path "./.github/*" | sed 's|^\./||' | sort > ./files.txt
           echo "Found files:"
-          cat files.txt
+          cat files.txt || true
 
       - name: Generate docs/index.html
         run: |
@@ -57,6 +72,11 @@ h1{margin:0}
 open('docs/index.html','w',encoding='utf-8').write(body)
 print("Wrote docs/index.html with", len(parts), "entries")
 PY
+
+      - name: Show generated file
+        run: |
+          echo "---- docs/index.html preview ----"
+          sed -n '1,120p' docs/index.html || true
 
       - name: Commit and push index
         run: |
