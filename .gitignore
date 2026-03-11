@@ -1,0 +1,22 @@
+# 忽略Excel数据文件
+*.xlsx
+*.xls
+
+# 忽略Python缓存
+__pycache__/
+*.pyc
+
+# 忽略node_modules
+node_modules/
+
+# 忽略临时Python脚本
+check_codes.py
+format_codes.py
+analyze_*.py
+final_analysis.py
+
+# 忽略技能包zip文件
+stock-analysis-skill.zip
+
+# 保留所有HTML报告（用于GitHub Pages）
+# 不忽略技能文件
