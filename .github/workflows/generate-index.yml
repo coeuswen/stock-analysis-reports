@@ -1,0 +1,66 @@
+# Add this file at: .github/workflows/generate-index.yml
+name: Generate reports index
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Find HTML report files
+        run: |
+          # 找到所有 .html 文件（排除 .git 目录、docs/index.html 本身 与 .github 目录）
+          find . -maxdepth 3 -type f -name "*.html" ! -path "./.git/*" ! -path "./docs/index.html" ! -path "./.github/*" | sed 's|^\./||' | sort > ./files.txt
+          echo "Found files:"
+          cat files.txt
+
+      - name: Generate docs/index.html
+        run: |
+          mkdir -p docs
+          python3 - <<'PY'
+import urllib.parse,html
+files = [line.strip() for line in open('files.txt','r',encoding='utf-8') if line.strip()]
+parts = []
+for f in files:
+    display = f
+    parts.append(f'''<div class="item">
+  <a href="{html.escape(f)}" target="_blank" rel="noopener">{html.escape(display)}</a>
+  <div class="meta">文件路径：{html.escape(f)}</div>
+</div>''')
+body = """<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>股票复盘报告索引</title>
+<style>
+body{font-family:system-ui,Segoe UI,Arial;max-width:900px;margin:32px auto;color:#111}
+h1{margin:0}
+.list{margin-top:18px}
+.item{padding:10px 12px;border:1px solid #eee;border-radius:8px;margin-bottom:8px;background:#fff}
+.item a{color:#0366d6;text-decoration:none;font-weight:600}
+.meta{color:#666;font-size:13px}
+</style>
+</head>
+<body>
+<h1>股票复盘报告索引</h1>
+<p>自动生成：列出仓库中的所有 .html 报告，点击即可在新标签页预览。</p>
+<div class="list">
+{items}
+</div>
+</body>
+</html>""".format(items="\\n".join(parts))
+open('docs/index.html','w',encoding='utf-8').write(body)
+print("Wrote docs/index.html with", len(parts), "entries")
+PY
+
+      - name: Commit and push index
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html
+          git diff --staged --quiet || (git commit -m "Auto-generate reports index" && git push)
