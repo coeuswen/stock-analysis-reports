@@ -1,0 +1,47 @@
+name: Auto Update Docs
+on:
+  push:
+    branches: [ main ]
+    paths: [ "*.html" ] # 只有根目录下 html 变动才触发
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update Files and Index
+        run: |
+          # 1. 找到根目录下所有的 HTML (排除 index.html) 并复制到 docs 文件夹
+          FILES=$(ls *.html | grep -v "index.html" || true)
+          
+          # 2. 构造 HTML 列表字符串
+          LIST_HTML="<ul>"
+          for f in $FILES; do
+            cp "$f" docs/
+            LIST_HTML+='<li><a href="'$f'" target="_blank">预览 '$f'</a ></li>'
+          done
+          LIST_HTML+="</ul>"
+
+          # 3. 使用 Python 一行命令安全地替换 index.html 中的标记内容
+          python3 -c "
+          import os
+          path = 'docs/index.html'
+          with open(path, 'r') as f: content = f.read()
+          start_marker = ''
+          end_marker = ''
+          if start_marker in content:
+              start_idx = content.find(start_marker) + len(start_marker)
+              end_idx = content.find(end_marker)
+              new_content = content[:start_idx] + '\n' + '$LIST_HTML' + '\n' + content[end_idx:]
+              with open(path, 'w') as f: f.write(new_content)
+          "
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add docs/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "update docs" && git push)
