@@ -30,7 +30,7 @@ jobs:
           for f in files:
               shutil.copy2(f, os.path.join("docs", f))
               # 注意：此处 href="./{f}" 没有任何多余空格！
-              li_tags += f'        <li><a href="./{f}"target="_blank">📊 {f}</a ></li>\n'
+              li_tags += f'        <li><a href="./{f}" target="_blank">📊 {f}</a ></li>\n'
           
           html_content = f"""<!DOCTYPE html>
           <html lang="zh-CN">
