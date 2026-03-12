@@ -1,43 +1,195 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: 自动生成股票报告索引并部署
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: 检出代码
         uses: actions/checkout@v4
-      - name: Setup Pages
+
+      - name: 生成索引页面
+        id: generate-index
+        run: |
+          echo "🔧 开始生成股票报告索引页面..."
+          
+          # 确保 docs 目录存在
+          echo "创建 docs 目录..."
+          mkdir -p docs
+          
+          # 检查目录是否创建成功
+          if [ ! -d "docs" ]; then
+            echo "❌ 错误: docs 目录创建失败"
+            exit 1
+          fi
+          
+          echo "📁 扫描仓库根目录中的股票报告文件..."
+          
+          # 查找所有股票报告文件
+          if ls 股票复盘分析报告_*.html 1> /dev/null 2>&1; then
+            REPORT_COUNT=$(ls 股票复盘分析报告_*.html | wc -l)
+            echo "找到 $REPORT_COUNT 个报告文件"
+            
+            # 生成简单的HTML文件
+            echo "生成 HTML 文件..."
+            
+            cat > docs/index.html << EOF
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股票分析报告索引</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+        h1 { color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; }
+        .update-time { color: #666; font-size: 0.9em; margin-bottom: 30px; }
+        .report-list { list-style: none; padding: 0; }
+        .report-item { 
+            margin: 15px 0; 
+            padding: 15px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px;
+            background: #f9f9f9;
+            transition: background 0.3s;
+        }
+        .report-item:hover { background: #f0f0f0; }
+        .report-link { 
+            color: #2196F3; 
+            text-decoration: none; 
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .report-link:hover { text-decoration: underline; }
+        .file-info { color: #777; font-size: 0.9em; margin-top: 5px; }
+        .empty-state { 
+            text-align: center; 
+            padding: 50px; 
+            color: #999; 
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+        }
+        footer { 
+            margin-top: 40px; 
+            padding-top: 20px; 
+            border-top: 1px solid #eee; 
+            color: #888; 
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>📈 股票分析报告索引</h1>
+    <p class="update-time">最后更新: $(date '+%Y年%m月%d日 %H:%M:%S')</p>
+    
+    <h2>报告列表 (共 $REPORT_COUNT 个)</h2>
+    <ul class="report-list">
+EOF
+            
+            # 添加报告文件链接
+            for file in $(ls -t 股票复盘分析报告_*.html); do
+              filename="$file"
+              filesize=$(stat -c%s "$file" 2>/dev/null || echo "未知")
+              filedate=$(date -r "$file" "+%Y-%m-%d %H:%M" 2>/dev/null || echo "未知")
+              
+              cat >> docs/index.html << EOF
+        <li class="report-item">
+            <a href="../$filename" class="report-link">$filename</a>
+            <div class="file-info">
+                大小: $filesize 字节 | 修改时间: $filedate
+            </div>
+        </li>
+EOF
+            done
+            
+            cat >> docs/index.html << EOF
+    </ul>
+EOF
+          else
+            echo "⚠️  未找到股票报告文件"
+            REPORT_COUNT=0
+            
+            cat > docs/index.html << EOF
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股票分析报告索引</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+        h1 { color: #333; }
+        .empty-state { 
+            text-align: center; 
+            padding: 50px; 
+            color: #999; 
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>📈 股票分析报告索引</h1>
+    <p>最后更新: $(date '+%Y年%m月%d日 %H:%M:%S')</p>
+    
+    <div class="empty-state">
+        <h3>暂无分析报告</h3>
+        <p>当前仓库根目录中没有找到股票分析报告文件。</p>
+        <p>请将您的报告文件（股票复盘分析报告_*.html）放入仓库根目录。</p>
+    </div>
+EOF
+          fi
+          
+          # 添加页脚
+          cat >> docs/index.html << EOF
+    <footer>
+        <p>本页面由 GitHub Actions 自动生成</p>
+        <p>每次代码推送后自动更新 | 报告总数: $REPORT_COUNT 个</p>
+    </footer>
+</body>
+</html>
+EOF
+          
+          echo "✅ 索引页面生成成功！"
+          echo "📄 文件位置: docs/index.html"
+          echo "📈 包含报告: $REPORT_COUNT 个"
+          
+          # 验证生成的文件
+          if [ -f "docs/index.html" ] && [ -s "docs/index.html" ]; then
+            echo "✓ 验证通过: docs/index.html 文件有效"
+          else
+            echo "✗ 错误: docs/index.html 文件生成失败"
+            exit 1
+          fi
+
+      - name: 配置 Pages
         uses: actions/configure-pages@v5
-      - name: Upload artifact
+
+      - name: 上传构建产物
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: '.'
-      - name: Deploy to GitHub Pages
+
+      - name: 部署到 GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
