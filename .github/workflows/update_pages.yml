@@ -1,0 +1,34 @@
+name: Update Pages Index
+
+on:
+  push:
+    paths:
+      - "*.html" # 只有当根目录下有 html 文件变动时才触发
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 赋予工作流写入仓库的权限
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Update docs and index
+        run: |
+          python .github/scripts/update_index.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update index and sync html files" && git push)
