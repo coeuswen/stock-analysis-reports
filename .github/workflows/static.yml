@@ -35,7 +35,9 @@ jobs:
       # 新增：自动生成索引页面
       - name: Generate index.html
         run: |
-          cd docs
+          # 确保 docs 目录存在
+          mkdir -p docs
+          
           # 创建索引页面的HTML头部
           echo '<!DOCTYPE html>
           <html>
@@ -114,35 +116,52 @@ jobs:
                       color: #6a737d; 
                       font-size: 13px;
                   }
+                  .info-box {
+                      background-color: #f0f9ff;
+                      border-left: 4px solid #0366d6;
+                      padding: 12px 16px;
+                      margin: 20px 0;
+                      border-radius: 4px;
+                  }
               </style>
           </head>
           <body>
               <header>
                   <h1>📈 股票分析报告索引</h1>
-                  <p class="update-time">最后更新: ' > index.html
+                  <p class="update-time">最后更新: ' > docs/index.html
           
           # 添加当前时间
-          echo "$(date '+%Y年%m月%d日 %H:%M:%S')" >> index.html
+          echo "$(date '+%Y年%m月%d日 %H:%M:%S')" >> docs/index.html
           
           echo '</p>
-              </header>' >> index.html
+              </header>
+              
+              <div class="info-box">
+                  <p>📁 <strong>文件位置说明：</strong>报告文件存储在仓库根目录，但通过此页面可以访问。</p>
+              </div>' >> docs/index.html
           
-          # 检查是否存在报告文件
+          # 在根目录中查找报告文件
           report_count=$(find . -maxdepth 1 -name "股票复盘分析报告_*.html" | wc -l)
           
           if [ $report_count -eq 0 ]; then
               echo '<div class="empty-state">
                   <p>暂无分析报告。</p>
-              </div>' >> index.html
+                  <p>请确保您的报告文件（股票复盘分析报告_*.html）已放置在仓库根目录。</p>
+              </div>' >> docs/index.html
           else
-              echo '<div class="report-list">' >> index.html
+              echo '<div class="report-list">' >> docs/index.html
               
-              # 按文件名排序（最新的在前）
+              # 按文件名排序（最新的在前），在根目录中搜索
               for file in $(ls -t 股票复盘分析报告_*.html 2>/dev/null); do
                   if [ -f "$file" ]; then
-                      # 提取文件名中的日期信息（假设文件名包含日期）
+                      # 提取文件名中的日期信息
                       filename=$(basename "$file")
-                      # 尝试从文件名中提取日期，如果匹配特定模式
+                      # 由于文件在根目录，链接需要指向根目录
+                      # 但GitHub Pages从/docs部署，所以需要相对路径
+                      # 因为index.html在docs目录，报告文件在上级目录，所以用../
+                      relative_path="../$filename"
+                      
+                      # 尝试从文件名中提取日期
                       if [[ $filename =~ ([0-9]{4}-[0-9]{2}-[0-9]{2}) ]]; then
                           file_date="${BASH_REMATCH[1]}"
                       elif [[ $filename =~ ([0-9]{8}) ]]; then
@@ -153,28 +172,29 @@ jobs:
                           file_date=$(date -r "$file" "+%Y-%m-%d")
                       fi
                       
-                      echo "  <div class=\"report-item\">" >> index.html
-                      echo "    <a class=\"report-link\" href=\"$filename\">$filename</a>" >> index.html
-                      echo "    <div class=\"report-date\">📅 报告日期: $file_date</div>" >> index.html
-                      echo "  </div>" >> index.html
+                      echo "  <div class=\"report-item\">" >> docs/index.html
+                      echo "    <a class=\"report-link\" href=\"$relative_path\">$filename</a>" >> docs/index.html
+                      echo "    <div class=\"report-date\">📅 报告日期: $file_date</div>" >> docs/index.html
+                      echo "  </div>" >> docs/index.html
                   fi
               done
               
-              echo '</div>' >> index.html
+              echo '</div>' >> docs/index.html
           fi
           
           echo '<footer>
-                  <p>本页面由 GitHub Actions 自动生成 | 报告总数: ' >> index.html
-          echo "$report_count" >> index.html
+                  <p>本页面由 GitHub Actions 自动生成 | 报告总数: ' >> docs/index.html
+          echo "$report_count" >> docs/index.html
           echo ' 个</p>
               </footer>
           </body>
-          </html>' >> index.html
+          </html>' >> docs/index.html
           
           # 输出生成的信息用于调试
           echo "✅ 已生成索引页面，包含 $report_count 个报告文件"
-          echo "📁 当前 docs 目录内容:"
-          ls -la
+          echo "📁 报告文件位置: 仓库根目录"
+          echo "📁 索引文件位置: docs/index.html"
+          echo "🔗 生成的链接示例: ../股票复盘分析报告_xxx.html"
       
       - name: Setup Pages
         uses: actions/configure-pages@v5
