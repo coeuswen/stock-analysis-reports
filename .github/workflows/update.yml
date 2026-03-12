@@ -5,58 +5,66 @@ on:
     paths: [ "*.html" ]
   workflow_dispatch: 
 
+permissions:
+  contents: write  # 必须显式开启写入权限
+
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Run Python Script
+      - name: Generate Index
         shell: python
         run: |
           import os, shutil, urllib.parse
-          # 1. 搜集并复制文件
+          # 1. 确保目录存在
+          if not os.path.exists("docs"): os.makedirs("docs")
+          
+          # 2. 搜集根目录下的 HTML
           files = [f for f in os.listdir('.') if f.endswith('.html') and f != 'index.html']
           files.sort(reverse=True)
-          if not os.path.exists("docs"): os.makedirs("docs")
           
           li_tags = ""
           for f in files:
               shutil.copy2(f, os.path.join("docs", f))
               safe_link = urllib.parse.quote(f)
-              li_tags += f'        <li><a href=" " target="_blank">📈 {f}</a ></li>\n'
+              li_tags += f'        <li><a href=" " target="_blank">📊 {f}</a ></li>\n'
           
-          # 2. 构造 HTML
-          with open("docs/index.html", "w", encoding="utf-8") as f:
-              f.write(f"""<!DOCTYPE html>
+          # 3. 写入 HTML (使用最简单的样式)
+          html_content = f"""<!DOCTYPE html>
           <html>
           <head>
               <meta charset="UTF-8">
-              <title>股票复盘分析报告</title>
+              <title>股票复盘报告</title>
               <style>
-                  body {{ font-family: sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: auto; background-color: #f6f8fa; }}
-                  h1 {{ color: #24292e; border-bottom: 2px solid #0366d6; padding-bottom: 10px; }}
+                  body {{ font-family: sans-serif; padding: 30px; max-width: 800px; margin: auto; background: #f4f7f9; }}
+                  h1 {{ color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px; }}
                   ul {{ list-style: none; padding: 0; }}
-                  li {{ background: white; margin-bottom: 12px; border: 1px solid #e1e4e8; border-radius: 8px; }}
-                  a {{ text-decoration: none; color: #0366d6; font-weight: bold; padding: 18px; display: block; }}
-                  footer {{ margin-top: 50px; color: #888; font-size: 12px; text-align: center; }}
+                  li {{ background: #fff; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }}
+                  a {{ display: block; padding: 20px; text-decoration: none; color: #007bff; font-weight: bold; }}
+                  a:hover {{ background: #f0faff; }}
               </style>
           </head>
           <body>
-              <h1>📊 股票复盘分析报告列表</h1>
+              <h1>📈 股票复盘分析报告列表</h1>
               <ul>
           {li_tags}
               </ul>
-              <footer>最后更新: {os.popen('date "+%Y-%m-%d %H:%M:%S"').read()}</footer>
+              <hr>
+              <p style="text-align:center; color: #999;">更新时间: {os.popen('date "+%Y-%m-%d %H:%M:%S"').read()}</p >
           </body>
-          </html>""")
+          </html>"""
+          
+          with open("docs/index.html", "w", encoding="utf-8") as f:
+              f.write(html_content)
 
-      - name: Commit & Push
+      - name: Push Changes
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add docs/
-          git commit -m "Fix syntax and links" || echo "No changes"
-          git push
+          # 只有当有文件变化时才提交，防止报错
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update list" && git push)
