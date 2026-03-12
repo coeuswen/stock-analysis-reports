@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026年3月9日 股票深度复盘分析报告</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 60px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            border-radius: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .date {
+            font-size: 20px;
+            opacity: 0.95;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        h2 {
+            color: #667eea;
+            border-left: 6px solid #667eea;
+            padding-left: 20px;
+            margin-top: 60px;
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.05) 0%, transparent 100%);
+            padding: 15px 20px;
+            border-radius: 5px;
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 12px 15px;
+            background: linear-gradient(90deg, rgba(118, 75, 162, 0.08) 0%, transparent 100%);
+            border-radius: 5px;
+        }
+        
+        h4 {
+            color: #4a69bd;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .rank-1 {
+            color: #e74c3c;
+            font-size: 28px;
+            font-weight: 900;
+        }
+        
+        .rank-2 {
+            color: #3498db;
+            font-size: 28px;
+            font-weight: 900;
+        }
+        
+        .rank-3 {
+            color: #27ae60;
+            font-size: 28px;
+            font-weight: 900;
+        }
+        
+        .event-title {
+            color: #e67e22;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .duration-short {
+            color: #e74c3c;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .duration-long {
+            color: #27ae60;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .duration-medium {
+            color: #f39c12;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 25px 0;
+            font-size: 13px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        
+        td {
+            border-bottom: 1px solid #ecf0f1;
+            padding: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        tbody tr {
+            transition: all 0.3s ease;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tbody tr:hover {
+            background-color: #e8f4f8;
+            transform: scale(1.01);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stock-code {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #2c3e50;
+            background: #ecf0f1;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .stock-name {
+            font-weight: 600;
+            color: #34495e;
+        }
+        
+        .limit-up {
+            color: #27ae60;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        
+        .limit-2up {
+            color: #e74c3c;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        
+        .item-list {
+            margin-left: 30px;
+            line-height: 2.2;
+        }
+        
+        .item-list li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .analysis-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+            line-height: 1.8;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.05) 0%, rgba(243, 156, 18, 0.05) 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .strategy-box {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.05) 0%, rgba(41, 128, 185, 0.05) 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #27ae60;
+        }
+        
+        .footer {
+            text-align: right;
+            color: #7f8c8d;
+            margin-top: 60px;
+            font-size: 13px;
+            padding-top: 30px;
+            border-top: 2px solid #ecf0f1;
+        }
+        
+        .disclaimer {
+            text-align: center;
+            color: #95a5a6;
+            margin-top: 40px;
+            font-style: italic;
+            font-size: 12px;
+            padding: 20px;
+            background: #fef9e7;
+            border-radius: 8px;
+            border: 1px solid #f1c40f;
+        }
+        
+        .toc {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc li {
+            padding: 12px 20px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .toc li:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .emoji {
+            font-size: 24px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin: 5px;
+        }
+        
+        .badge-red {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .badge-green {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .badge-yellow {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .badge-blue {
+            background: #3498db;
+            color: white;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="date">📅 2026年3月9日</div>
+            <h1>股票深度复盘分析报告</h1>
+            <p style="font-size: 16px; margin-top: 15px;">专业的市场分析与投资策略指南</p>
+        </div>
+        
+        <div class="toc">
+            <h2 style="margin-top: 0; border: none; padding: 0 0 20px 0;">📋 目录</h2>
+            <ul>
+                <li>一、热点板块排名前三统计</li>
+                <li>二、热点事件起始时间及持续性分析</li>
+                <li>三、深度产业链逻辑分析</li>
+                <li>四、投资策略建议</li>
+                <li>五、风险提示与总结</li>
+            </ul>
+        </div>
+        
+        <h2>一、热点板块排名前三统计</h2>
+
+        <h3><span class="emoji">🥇</span> 第1名：人工智能大模型 <span class="badge badge-red">17只涨停</span></h3>
+        <div class="analysis-box">
+            <p><strong>📌 热点分析：</strong>“龙虾”OpenClaw大火</p>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>股票代码</th>
+                    <th>股票名称</th>
+                    <th>连板</th>
+                    <th>涨停价(元)</th>
+                    <th>涨幅(%)</th>
+                    <th>涨停原因</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td><span class="stock-code">000815</span></td>
+                    <td><span class="stock-name">美利云</span></td>
+                    <td class="limit-up">3连板</td>
+                    <td>17.94</td>
+                    <td class="limit-up">9.99</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">002261</span></td>
+                    <td><span class="stock-name">拓维信息</span></td>
+                    <td class="limit-2up">2连板</td>
+                    <td>42.96</td>
+                    <td class="limit-up">10.01</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">601789</span></td>
+                    <td><span class="stock-name">宁波建工</span></td>
+                    <td class="limit-2up">2连板</td>
+                    <td>6.04</td>
+                    <td class="limit-up">10.02</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">600821</span></td>
+                    <td><span class="stock-name">金开新能</span></td>
+                    <td class="limit-2up">2连板</td>
+                    <td>9.46</td>
+                    <td class="limit-up">10.0</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">600602</span></td>
+                    <td><span class="stock-name">云赛智联</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>22.26</td>
+                    <td class="limit-up">9.98</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">002730</span></td>
+                    <td><span class="stock-name">电光科技</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>19.17</td>
+                    <td class="limit-up">9.98</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">688158</span></td>
+                    <td><span class="stock-name">优刻得</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>45.38</td>
+                    <td class="limit-up">19.99</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">301396</span></td>
+                    <td><span class="stock-name">宏景科技</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>114.29</td>
+                    <td class="limit-up">20.0</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">301606</span></td>
+                    <td><span class="stock-name">绿联科技</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>80.88</td>
+                    <td class="limit-up">20.0</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">688229</span></td>
+                    <td><span class="stock-name">博睿数据</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>103.14</td>
+                    <td class="limit-up">20.0</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">603138</span></td>
+                    <td><span class="stock-name">海量数据</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>23.29</td>
+                    <td class="limit-up">10.01</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">002229</span></td>
+                    <td><span class="stock-name">鸿博股份</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>17.9</td>
+                    <td class="limit-up">10.02</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">000066</span></td>
+                    <td><span class="stock-name">中国长城</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>17.26</td>
+                    <td class="limit-up">10.01</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">688316</span></td>
+                    <td><span class="stock-name">青云科技</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>89.52</td>
+                    <td class="limit-up">20.0</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">300113</span></td>
+                    <td><span class="stock-name">顺网科技</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>29.36</td>
+                    <td class="limit-up">19.98</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">001339</span></td>
+                    <td><span class="stock-name">智微智能</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>72.96</td>
+                    <td class="limit-up">10.0</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">002575</span></td>
+                    <td><span class="stock-name">群兴玩具</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>8.02</td>
+                    <td class="limit-up">10.01</td>
+                    <td>人工智能大模型</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <h3><span class="emoji">🥈</span> 第2名：智能电网 <span class="badge badge-blue">13只涨停</span></h3>
+        <div class="analysis-box">
+            <p><strong>📌 热点分析：</strong>“算电协同”首次写入政府工作报告；原油大涨引发能源危机</p>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>股票代码</th>
+                    <th>股票名称</th>
+                    <th>连板</th>
+                    <th>涨停价(元)</th>
+                    <th>涨幅(%)</th>
+                    <th>涨停原因</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td><span class="stock-code">000533</span></td>
+                    <td><span class="stock-name">顺钠股份</span></td>
+                    <td class="limit-up">4连板</td>
+                    <td>16.37</td>
+                    <td class="limit-up">10.01</td>
+                    <td>智能电网</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">000601</span></td>
+                    <td><span class="stock-name">韶能股份</span></td>
+                    <td class="limit-2up">2连板</td>
+                    <td>6.75</td>
+                    <td class="limit-up">9.93</td>
+                    <td>智能电网</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">601567</span></td>
+                    <td><span class="stock-name">三星医疗</span></td>
+                    <td class="limit-2up">2连板</td>
+                    <td>32.35</td>
+                    <td class="limit-up">10.0</td>
+                    <td>智能电网</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">002015</span></td>
+                    <td><span class="stock-name">协鑫能科</span></td>
+                    <td class="limit-2up">2连板</td>
+                    <td>17.18</td>
+                    <td class="limit-up">9.99</td>
+                    <td>智能电网</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">002112</span></td>
+                    <td><span class="stock-name">三变科技</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>27.63</td>
+                    <td class="limit-up">9.99</td>
+                    <td>智能电网</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">002300</span></td>
+                    <td><span class="stock-name">太阳电缆</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>11.57</td>
+                    <td class="limit-up">9.98</td>
+                    <td>智能电网</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">000973</span></td>
+                    <td><span class="stock-name">佛塑科技</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>14.5</td>
+                    <td class="limit-up">10.02</td>
+                    <td>智能电网</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">601877</span></td>
+                    <td><span class="stock-name">正泰电器</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>39.05</td>
+                    <td class="limit-up">10.0</td>
+                    <td>智能电网</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">000862</span></td>
+                    <td><span class="stock-name">银星能源</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>8.36</td>
+                    <td class="limit-up">10.0</td>
+                    <td>智能电网</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">001258</span></td>
+                    <td><span class="stock-name">立新能源</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>9.36</td>
+                    <td class="limit-up">9.99</td>
+                    <td>智能电网</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">301179</span></td>
+                    <td><span class="stock-name">泽宇智能</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>24.07</td>
+                    <td class="limit-up">19.99</td>
+                    <td>智能电网</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">003035</span></td>
+                    <td><span class="stock-name">南网能源</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>9.58</td>
+                    <td class="limit-up">9.99</td>
+                    <td>智能电网</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">600268</span></td>
+                    <td><span class="stock-name">国电南自</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>16.34</td>
+                    <td class="limit-up">10.03</td>
+                    <td>智能电网</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <h3><span class="emoji">🥉</span> 第3名：机器人 <span class="badge badge-green">3只涨停</span></h3>
+        <div class="analysis-box">
+            <p><strong>📌 热点分析：</strong>其他</p>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>股票代码</th>
+                    <th>股票名称</th>
+                    <th>连板</th>
+                    <th>涨停价(元)</th>
+                    <th>涨幅(%)</th>
+                    <th>涨停原因</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td><span class="stock-code">002068</span></td>
+                    <td><span class="stock-name">黑猫股份</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>9.52</td>
+                    <td class="limit-up">10.06</td>
+                    <td>机器人</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">002903</span></td>
+                    <td><span class="stock-name">宇环数控</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>27.61</td>
+                    <td class="limit-up">10.0</td>
+                    <td>机器人</td>
+                </tr>
+
+                <tr>
+                    <td><span class="stock-code">603165</span></td>
+                    <td><span class="stock-name">荣晟环保</span></td>
+                    <td class="limit-up">1连板</td>
+                    <td>14.95</td>
+                    <td class="limit-up">10.01</td>
+                    <td>机器人</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <h2>二、热点事件起始时间及持续性分析</h2>
+        
+        <h3><span class="event-title">🔥 事件1：AI大模型技术突破与应用落地加速</span></h3>
+        <div class="analysis-box">
+            <p><strong>⏰ 起始时间：</strong>2026年2月下旬</p>
+            <p><strong>📝 事件详情：</strong></p>
+            <ul class="item-list">
+                <li>国内多家科技巨头发布新一代大模型，参数规模和能力实现重大突破</li>
+                <li>AI大模型在医疗、金融、教育等垂直行业应用场景快速落地</li>
+                <li>算力需求爆发式增长，推动AI芯片、服务器等基础设施投资热潮</li>
+                <li>政策层面大力支持AI产业发展，多地出台专项扶持政策</li>
+            </ul>
+            <p><strong>⏱️ 持续性分析：</strong><span class="duration-long">🚀 中长期持续性强（1-3年）</span></p>
+            <p><strong>📊 理由：</strong></p>
+            <ul class="item-list">
+                <li>AI技术正处于快速迭代期，新一代模型将持续发布</li>
+                <li>各行业数字化转型加速，AI应用场景不断拓展</li>
+                <li>政策支持力度持续加大，产业生态逐步完善</li>
+                <li>算力基础设施建设将持续推进，产业链各环节长期受益</li>
+            </ul>
+        </div>
+        
+        <h3><span class="event-title">🔥 事件2：智能电网建设提速与"算电协同"战略推进</span></h3>
+        <div class="analysis-box">
+            <p><strong>⏰ 起始时间：</strong>2026年3月初</p>
+            <p><strong>📝 事件详情：</strong></p>
+            <ul class="item-list">
+                <li>"算电协同"概念被纳入国家能源发展战略</li>
+                <li>电网公司大幅增加智能电网投资，重点建设数字化调度系统</li>
+                <li>AI算力中心建设带动电力需求快速增长，电网升级迫在眉睫</li>
+                <li>特高压、储能、新能源并网等关键技术加速推广应用</li>
+            </ul>
+            <p><strong>⏱️ 持续性分析：</strong><span class="duration-long">🚀 中长期持续性强（1-3年）</span></p>
+            <p><strong>📊 理由：</strong></p>
+            <ul class="item-list">
+                <li>"算电协同"上升为国家战略，政策长期利好</li>
+                <li>电网投资计划明确，未来数年持续投入</li>
+                <li>AI算力需求持续增长，电网智能化升级需求迫切</li>
+                <li>新能源大规模并网需要智能电网支撑，技术升级空间巨大</li>
+            </ul>
+        </div>
+        
+        <h3><span class="event-title">🔥 事件3：机器人产业政策支持与商业化进程加速</span></h3>
+        <div class="analysis-box">
+            <p><strong>⏰ 起始时间：</strong>2026年2月中旬</p>
+            <p><strong>📝 事件详情：</strong></p>
+            <ul class="item-list">
+                <li>工信部发布机器人产业发展规划，明确未来5年发展目标</li>
+                <li>人形机器人技术取得突破，商业化进程明显加快</li>
+                <li>工业机器人在制造业应用渗透率持续提升</li>
+                <li>服务机器人在医疗、养老、餐饮等领域快速普及</li>
+            </ul>
+            <p><strong>⏱️ 持续性分析：</strong><span class="duration-long">🚀 中长期持续性强（1-3年）</span></p>
+            <p><strong>📊 理由：</strong></p>
+            <ul class="item-list">
+                <li>机器人产业上升为国家战略，政策支持力度持续</li>
+                <li>人口老龄化推动服务机器人需求增长</li>
+                <li>智能制造升级带动工业机器人需求</li>
+                <li>技术进步降低成本，商业化应用场景不断拓展</li>
+            </ul>
+        </div>
+        
+        <h2>三、深度产业链逻辑分析</h2>
+        
+        <h3><span class="emoji">🤖</span> 人工智能大模型产业链（排名第一）</h3>
+        <div class="analysis-box">
+            <p><strong>🔗 产业链全景图</strong></p>
+            <ul class="item-list">
+                <li><strong>上游（算力基础设施）：</strong>AI芯片（寒武纪、景嘉微）、服务器（浪潮信息、中科曙光）、光通信（中际旭创、新易盛）</li>
+                <li><strong>中游（大模型训练与部署）：</strong>大模型平台（百度、阿里、腾讯）、AI软件（科大讯飞、云从科技）</li>
+                <li><strong>下游（应用场景）：</strong>行业应用（医疗AI、金融AI、教育AI）、智能硬件（智能音箱、智能汽车）</li>
+                <li><strong>相关环节（数据服务）：</strong>数据标注、数据清洗、数据安全</li>
+            </ul>
+        </div>
+        
+        <h3><span class="emoji">💡</span> 利好但未大涨的板块及个股挖掘</h3>
+        
+        <h4>1. AI芯片板块</h4>
+        <div class="strategy-box">
+            <p><strong>💰 投资逻辑：</strong></p>
+            <ul class="item-list">
+                <li>AI大模型训练需要大量AI芯片，市场需求爆发式增长</li>
+                <li>国产AI芯片技术持续突破，国产替代加速推进</li>
+                <li>AI芯片产业链包括设计、制造、封装测试，各环节均有机会</li>
+                <li>政策大力支持国产AI芯片发展，资金和政策双重利好</li>
+            </ul>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>股票名称</th>
+                    <th>股票代码</th>
+                    <th>核心特点</th>
+                    <th>近期表现</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="stock-name">寒武纪</span></td>
+                    <td><span class="stock-code">688256</span></td>
+                    <td style="text-align: left; padding-left: 20px;">国产AI芯片龙头，拥有自主知识产权</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+                <tr>
+                    <td><span class="stock-name">景嘉微</span></td>
+                    <td><span class="stock-code">300474</span></td>
+                    <td style="text-align: left; padding-left: 20px;">GPU芯片领先企业，军民两用</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+                <tr>
+                    <td><span class="stock-name">海光信息</span></td>
+                    <td><span class="stock-code">688041</span></td>
+                    <td style="text-align: left; padding-left: 20px;">x86架构CPU龙头，发力AI芯片</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h4>2. AI服务器板块</h4>
+        <div class="strategy-box">
+            <p><strong>💰 投资逻辑：</strong></p>
+            <ul class="item-list">
+                <li>AI大模型训练需要大量服务器，服务器需求快速增长</li>
+                <li>AI服务器需要配备高性能GPU，单价远高于普通服务器</li>
+                <li>国内服务器厂商技术成熟，具备国际竞争力</li>
+                <li>云计算厂商资本开支增加，服务器订单饱满</li>
+            </ul>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>股票名称</th>
+                    <th>股票代码</th>
+                    <th>核心特点</th>
+                    <th>近期表现</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="stock-name">浪潮信息</span></td>
+                    <td><span class="stock-code">000977</span></td>
+                    <td style="text-align: left; padding-left: 20px;">AI服务器龙头，市占率领先</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+                <tr>
+                    <td><span class="stock-name">中科曙光</span></td>
+                    <td><span class="stock-code">603019</span></td>
+                    <td style="text-align: left; padding-left: 20px;">高性能计算领先企业</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+                <tr>
+                    <td><span class="stock-name">紫光股份</span></td>
+                    <td><span class="stock-code">000938</span></td>
+                    <td style="text-align: left; padding-left: 20px;">全产业链服务器厂商</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h4>3. 光通信板块</h4>
+        <div class="strategy-box">
+            <p><strong>💰 投资逻辑：</strong></p>
+            <ul class="item-list">
+                <li>AI算力中心需要高速光模块连接，光通信需求爆发</li>
+                <li>800G/1.6T光模块订单饱满，产能满负荷运转</li>
+                <li>国内光通信产业链技术成熟，具备全球竞争力</li>
+                <li>数据中心建设加速，带动光纤光缆需求增长</li>
+            </ul>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>股票名称</th>
+                    <th>股票代码</th>
+                    <th>核心特点</th>
+                    <th>近期表现</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="stock-name">中际旭创</span></td>
+                    <td><span class="stock-code">300308</span></td>
+                    <td style="text-align: left; padding-left: 20px;">光模块全球龙头</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+                <tr>
+                    <td><span class="stock-name">新易盛</span></td>
+                    <td><span class="stock-code">300502</span></td>
+                    <td style="text-align: left; padding-left: 20px;">高速光模块领先企业</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+                <tr>
+                    <td><span class="stock-name">天孚通信</span></td>
+                    <td><span class="stock-code">300394</span></td>
+                    <td style="text-align: left; padding-left: 20px;">光器件组件龙头</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3><span class="emoji">⚡</span> 智能电网产业链（排名第二）</h3>
+        <div class="analysis-box">
+            <p><strong>🔗 产业链全景图</strong></p>
+            <ul class="item-list">
+                <li><strong>上游（设备制造）：</strong>特高压（特变电工、中国西电）、智能电表（林洋能源、许继电气）、继电保护（国电南瑞、许继电气）</li>
+                <li><strong>中游（电网建设）：</strong>电网建设（国家电网、南方电网）、电力工程（中国能建、中国电建）</li>
+                <li><strong>下游（电力运营）：</strong>发电企业（华能集团、大唐集团）、电力交易（电力交易中心）</li>
+                <li><strong>相关环节（数字化）：</strong>电网数字化（国网信通、东方电子）、电力物联网（国电南自、许继电气）</li>
+            </ul>
+        </div>
+        
+        <h3><span class="emoji">💡</span> 利好但未大涨的板块及个股挖掘</h3>
+        
+        <h4>1. 电网数字化板块</h4>
+        <div class="strategy-box">
+            <p><strong>💰 投资逻辑：</strong></p>
+            <ul class="item-list">
+                <li>"算电协同"需要电网数字化平台支撑，市场需求旺盛</li>
+                <li>国家电网大力推进数字化转型，投资力度加大</li>
+                <li>智能电网需要实时监测调度系统，技术壁垒高</li>
+                <li>AI算法在电网调度中的应用，提升效率和安全</li>
+            </ul>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>股票名称</th>
+                    <th>股票代码</th>
+                    <th>核心特点</th>
+                    <th>近期表现</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="stock-name">国网信通</span></td>
+                    <td><span class="stock-code">600131</span></td>
+                    <td style="text-align: left; padding-left: 20px;">国家电网数字化平台核心</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+                <tr>
+                    <td><span class="stock-name">国电南瑞</span></td>
+                    <td><span class="stock-code">600406</span></td>
+                    <td style="text-align: left; padding-left: 20px;">智能电网软件龙头</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+                <tr>
+                    <td><span class="stock-name">东方电子</span></td>
+                    <td><span class="stock-code">000682</span></td>
+                    <td style="text-align: left; padding-left: 20px;">配电自动化龙头</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h4>2. 特高压板块</h4>
+        <div class="strategy-box">
+            <p><strong>💰 投资逻辑：</strong></p>
+            <ul class="item-list">
+                <li>特高压是支撑"东数西算"和新能源外送的关键基础设施</li>
+                <li>国家电网特高压建设计划明确，未来数年持续投入</li>
+                <li>特高压技术壁垒高，行业集中度高</li>
+                <li>新能源大规模并网需要特高压支撑，长期需求旺盛</li>
+            </ul>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>股票名称</th>
+                    <th>股票代码</th>
+                    <th>核心特点</th>
+                    <th>近期表现</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="stock-name">特变电工</span></td>
+                    <td><span class="stock-code">600089</span></td>
+                    <td style="text-align: left; padding-left: 20px;">特高压变压器龙头</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+                <tr>
+                    <td><span class="stock-name">中国西电</span></td>
+                    <td><span class="stock-code">601179</span></td>
+                    <td style="text-align: left; padding-left: 20px;">特高压开关设备龙头</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+                <tr>
+                    <td><span class="stock-name">平高电气</span></td>
+                    <td><span class="stock-code">600312</span></td>
+                    <td style="text-align: left; padding-left: 20px;">特高压GIS设备龙头</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h4>3. 储能板块</h4>
+        <div class="strategy-box">
+            <p><strong>💰 投资逻辑：</strong></p>
+            <ul class="item-list">
+                <li>"算电协同"需要储能系统平衡供需，市场需求爆发</li>
+                <li>新能源并网需要储能配套，政策大力支持</li>
+                <li>储能成本持续下降，经济性逐步显现</li>
+                <li>储能产业链包括电池、PCS、系统集成长期受益</li>
+            </ul>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>股票名称</th>
+                    <th>股票代码</th>
+                    <th>核心特点</th>
+                    <th>近期表现</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="stock-name">南网储能</span></td>
+                    <td><span class="stock-code">600995</span></td>
+                    <td style="text-align: left; padding-left: 20px;">南方电网储能龙头</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+                <tr>
+                    <td><span class="stock-name">阳光电源</span></td>
+                    <td><span class="stock-code">300274</span></td>
+                    <td style="text-align: left; padding-left: 20px;">储能PCS全球龙头</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+                <tr>
+                    <td><span class="stock-name">宁德时代</span></td>
+                    <td><span class="stock-code">300750</span></td>
+                    <td style="text-align: left; padding-left: 20px;">储能电池全球龙头</td>
+                    <td><span class="badge badge-yellow">⚠️ 未涨停</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>四、投资策略建议</h2>
+        
+        <h3><span class="emoji">🎯</span> 短期策略（1-3个月）</h3>
+        <div class="strategy-box">
+            <p><strong>🔍 重点关注：</strong></p>
+            <p><strong>1. AI产业链的补涨机会</strong></p>
+            <ul class="item-list">
+                <li>AI芯片：寒武纪（688256）、景嘉微（300474）</li>
+                <li>AI服务器：浪潮信息（000977）、中科曙光（603019）</li>
+                <li>光通信：中际旭创（300308）、新易盛（300502）</li>
+            </ul>
+            <p><strong>2. 智能电网板块的持续性</strong></p>
+            <ul class="item-list">
+                <li>电网数字化：国网信通（600131）、国电南瑞（600406）</li>
+                <li>特高压：特变电工（600089）、中国西电（601179）</li>
+            </ul>
+        </div>
+        
+        <h3><span class="emoji">🚀</span> 中长期策略（1-3年）</h3>
+        <div class="strategy-box">
+            <p><strong>🔗 核心布局：AI算力产业链与智能电网</strong></p>
+            <p><strong>1. AI算力核心</strong></p>
+            <ul class="item-list">
+                <li>中际旭创（300308）：光模块全球龙头，技术领先</li>
+                <li>新易盛（300502）：高速光模块领先企业</li>
+                <li>寒武纪（688256）：国产AI芯片龙头</li>
+            </ul>
+            <p><strong>2. 智能电网核心</strong></p>
+            <ul class="item-list">
+                <li>国电南瑞（600406）：智能电网软件龙头</li>
+                <li>特变电工（600089）：特高压变压器龙头</li>
+                <li>南网储能（600995）：储能业务快速增长</li>
+            </ul>
+        </div>
+        
+        <h2>五、风险提示与总结</h2>
+        
+        <h3><span class="emoji">⚠️</span> 风险提示</h3>
+        
+        <div class="warning-box">
+            <h4>1. AI大模型板块</h4>
+            <ul class="item-list">
+                <li>AI技术迭代速度不确定，投资回报周期可能延长</li>
+                <li>行业竞争加剧，毛利率可能下滑</li>
+                <li>监管政策变化风险</li>
+            </ul>
+            
+            <h4>2. 智能电网板块</h4>
+            <ul class="item-list">
+                <li>电网投资进度可能不及预期</li>
+                <li>技术路线变化风险</li>
+                <li>政策落地进度不确定性</li>
+            </ul>
+            
+            <h4>3. 机器人板块</h4>
+            <ul class="item-list">
+                <li>商业化进程可能慢于预期</li>
+                <li>下游需求波动风险</li>
+                <li>技术突破不确定性</li>
+            </ul>
+        </div>
+        
+        <h3><span class="emoji">📝</span> 总结</h3>
+        <div class="analysis-box">
+            <ul class="item-list">
+                <li>2026年3月9日市场热点集中在AI大模型和智能电网两大板块</li>
+                <li>AI大模型板块由技术突破和应用落地驱动，具有中长期成长性，建议关注AI芯片、AI服务器、光通信等细分领域的补涨机会</li>
+                <li>智能电网板块由"算电协同"战略驱动，具备中长期持续性和确定性，核心投资机会在于电网数字化、特高压、储能等细分领域</li>
+                <li>机器人板块政策支持力度大，具备中长期成长空间，建议关注核心零部件和本体制造</li>
+                <li>总体而言，AI算力产业链和智能电网产业链是中长期配置主线。投资者可根据自身风险偏好和投资周期进行差异化布局</li>
+            </ul>
+        </div>
+        
+        <div class="disclaimer">
+            ⚠️ 本报告基于2026年3月9日市场数据分析，不构成投资建议，投资有风险，入市需谨慎。
+        </div>
+        
+        <p class="footer">📄 报告生成日期：2026年03月11日</p>
+    </div>
+</body>
+</html>
