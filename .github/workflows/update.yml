@@ -20,45 +20,56 @@ jobs:
           import glob
           import shutil
 
-          # 1. 获取根目录下所有 html 文件 (排除 index.html)
-          # 使用 glob 处理特殊字符更稳健
-          source_files = [f for f in glob.glob("*.html") if f != "index.html"]
-          source_files.sort(reverse=True) # 按名称降序，这样日期新的在上面
+          # 1. 搜集根目录下的 HTML (排除 index.html)
+          files = [f for f in glob.glob("*.html") if f != "index.html"]
+          files.sort(reverse=True) # 新的在前
 
-          # 2. 同步到 docs 目录并生成链接列表
-          list_items = []
-          for f in source_files:
+          # 2. 同步文件并生成列表代码
+          list_html = "<ul>\n"
+          for f in files:
               shutil.copy2(f, os.path.join("docs", f))
-              list_items.append(f'<li><a href=" " target="_blank">预览 {f}</a ></li>')
-          
-          list_html = "<ul>\n" + "\n".join(list_items) + "\n</ul>"
+              list_html += f'  <li><a href=" " target="_blank">预览 {f}</a ></li>\n'
+          list_html += "</ul>"
 
-          # 3. 替换 docs/index.html 中的内容
+          # 3. 稳健地更新 index.html
           index_path = "docs/index.html"
-          start_marker = ""
-          end_marker = ""
+          START_MARK = ""
+          END_MARK = ""
 
           if os.path.exists(index_path):
               with open(index_path, "r", encoding="utf-8") as f:
-                  content = f.read()
+                  lines = f.readlines()
               
-              if start_marker in content and end_marker in content:
-                  prefix = content.split(start_marker)[0]
-                  suffix = content.split(end_marker)[-1]
-                  # 重新拼接：前缀 + 开始标记 + 新列表 + 结束标记 + 后缀
-                  new_content = f"{prefix}{start_marker}\n{list_html}\n{end_marker}{suffix}"
-                  
+              new_lines = []
+              skip = False
+              found_markers = False
+
+              for line in lines:
+                  if START_MARK in line:
+                      new_lines.append(line)      # 保留开始标记
+                      new_lines.append(list_html + "\n") # 插入新列表
+                      skip = True                 # 开始跳过旧内容
+                      found_markers = True
+                      continue
+                  if END_MARK in line:
+                      skip = False                # 停止跳过
+                      new_lines.append(line)      # 保留结束标记
+                      continue
+                  if not skip:
+                      new_lines.append(line)      # 保留原始内容
+
+              if found_markers:
                   with open(index_path, "w", encoding="utf-8") as f:
-                      f.write(new_content)
-                  print("Index.html 更新成功！")
+                      f.writelines(new_lines)
+                  print("✅ 更新成功！")
               else:
-                  print("错误：在 index.html 中没找到标记位！")
+                  print("❌ 错误：index.html 里没找到标记代码")
           else:
-              print("错误：docs/index.html 不存在！")
+              print("❌ 错误：docs/index.html 文件没找到")
 
       - name: Commit & Push
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add docs/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Fix duplicate links and sync files" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Fix list duplicates and separator error" && git push)
