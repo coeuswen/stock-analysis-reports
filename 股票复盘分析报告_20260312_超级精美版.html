@@ -193,6 +193,19 @@ tr:hover td{background:#f8fafc;}
 
 /* ── Footer ── */
 .footer{text-align:center;color:rgba(255,255,255,.5);font-size:13px;padding:24px;margin-top:16px;}
+
+/* ── 全页水印 ── */
+body::before{
+  content:'';
+  position:fixed;
+  top:0;left:0;width:100%;height:100%;
+  pointer-events:none;
+  z-index:9999;
+  user-select:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='22' font-weight='bold' font-family='Microsoft YaHei,SimHei,sans-serif' fill='rgba(120,120,120,0.07)' transform='rotate(-30,170,100)'%3E%E4%B8%AD%E5%8E%9F%E5%BA%84%E7%A8%BC%E6%B1%89%3C/text%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-size:340px 200px;
+}
 </style>
 </head>
 <body>
@@ -203,7 +216,18 @@ tr:hover td{background:#f8fafc;}
   <div style="font-size:13px;opacity:.6;margin-bottom:8px;letter-spacing:2px;">STOCK MARKET REVIEW · DEEP ANALYSIS</div>
   <h1>📈 2026年03月12日 股票深度复盘分析报告</h1>
   <div class="sub">V3.0 | 多层传导模型 · 四维对比矩阵 · 置信度量化 · 可执行操作方案</div>
-  <div class="badge-row">
+  <!-- 作者 & 版权 -->
+  <div style="display:flex;justify-content:center;align-items:center;gap:24px;margin-top:18px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:30px;padding:7px 20px;backdrop-filter:blur(6px);">
+      <span style="font-size:15px;">✍️</span>
+      <span style="font-size:14px;font-weight:700;letter-spacing:1px;color:#fde68a;">作者：中原庄稼汉</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,180,0,.35);border-radius:30px;padding:7px 20px;backdrop-filter:blur(6px);">
+      <span style="font-size:15px;">🔒</span>
+      <span style="font-size:13px;color:#fca5a5;letter-spacing:.5px;">版权声明：未经作者授权禁止转发</span>
+    </div>
+  </div>
+  <div class="badge-row" style="margin-top:16px;">
     <span class="badge">📊 总涨停 52 只</span>
     <span class="badge">🏆 前三板块已深度解析</span>
     <span class="badge">🎯 含三级传导模型</span>
