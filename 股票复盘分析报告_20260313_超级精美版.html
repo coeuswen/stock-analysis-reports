@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026年03月13日 股票深度复盘分析报告 V3.0</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --blue:#3b82f6;--blue-dark:#1d4ed8;--blue-light:#eff6ff;
+  --orange:#f97316;--orange-dark:#c2410c;--orange-light:#fff7ed;
+  --green:#22c55e;--green-dark:#15803d;--green-light:#f0fdf4;
+  --purple:#a855f7;--purple-dark:#7e22ce;--purple-light:#faf5ff;
+  --red:#ef4444;--gray:#6b7280;--dark:#1e293b;
+}
+body{font-family:'Microsoft YaHei',Arial,sans-serif;background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#0f172a 100%);min-height:100vh;color:#1e293b;line-height:1.7;}
+.container{max-width:1360px;margin:0 auto;padding:30px 20px;}
+
+/* ── 顶部 Header ── */
+.header{background:linear-gradient(135deg,#1e3a5f,#0f172a);border-radius:20px;padding:48px 40px;text-align:center;color:#fff;margin-bottom:36px;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.header::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(59,130,246,.3),transparent);border-radius:50%;}
+.header h1{font-size:38px;font-weight:900;letter-spacing:2px;text-shadow:0 2px 10px rgba(0,0,0,.3);}
+.header .sub{font-size:16px;opacity:.8;margin-top:12px;letter-spacing:1px;}
+.badge-row{display:flex;justify-content:center;gap:12px;margin-top:20px;flex-wrap:wrap;}
+.badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:30px;padding:6px 18px;font-size:13px;backdrop-filter:blur(4px);}
+
+/* ── 目录 ── */
+.toc-card{background:#fff;border-radius:16px;padding:32px 36px;margin-bottom:32px;box-shadow:0 4px 24px rgba(0,0,0,.08);}
+.toc-card h2{font-size:22px;font-weight:800;color:var(--dark);margin-bottom:20px;padding-bottom:12px;border-bottom:3px solid var(--blue);}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;}
+.toc-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:1px solid #e2e8f0;text-decoration:none;color:var(--dark);transition:all .2s;cursor:pointer;}
+.toc-item:hover{background:var(--blue-light);border-color:var(--blue);color:var(--blue-dark);transform:translateX(4px);}
+.toc-num{width:28px;height:28px;border-radius:8px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+
+/* ── 通用 Section ── */
+.section{background:#fff;border-radius:16px;padding:36px;margin-bottom:28px;box-shadow:0 4px 24px rgba(0,0,0,.08);}
+.section-title{font-size:24px;font-weight:800;color:var(--dark);margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+.section-subtitle{color:var(--gray);font-size:14px;margin-bottom:28px;padding-bottom:16px;border-bottom:2px solid #f1f5f9;}
+.chapter-tag{background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:1px;}
+
+/* ── 统计卡片 ── */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+.stat-card{border-radius:14px;padding:20px;text-align:center;}
+.stat-card.blue{background:var(--blue-light);border:1px solid #bfdbfe;}
+.stat-card.orange{background:var(--orange-light);border:1px solid #fed7aa;}
+.stat-card.green{background:var(--green-light);border:1px solid #bbf7d0;}
+.stat-card.purple{background:var(--purple-light);border:1px solid #e9d5ff;}
+.stat-num{font-size:32px;font-weight:900;}
+.stat-card.blue .stat-num{color:var(--blue-dark);}
+.stat-card.orange .stat-num{color:var(--orange-dark);}
+.stat-card.green .stat-num{color:var(--green-dark);}
+.stat-card.purple .stat-num{color:var(--purple-dark);}
+.stat-label{font-size:13px;color:var(--gray);margin-top:4px;}
+
+/* ── 板块热力 ── */
+.sector-rank-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.sector-card{border-radius:14px;padding:24px;border:2px solid;}
+.sector-card.blue{background:var(--blue-light);border-color:#93c5fd;}
+.sector-card.orange{background:var(--orange-light);border-color:#fdba74;}
+.sector-card.green{background:var(--green-light);border-color:#86efac;}
+.sector-rank-num{font-size:40px;font-weight:900;opacity:.2;}
+.sector-card.blue .sector-rank-num{color:var(--blue-dark);}
+.sector-card.orange .sector-rank-num{color:var(--orange-dark);}
+.sector-card.green .sector-rank-num{color:var(--green-dark);}
+.sector-name{font-size:22px;font-weight:800;margin:-10px 0 4px;}
+.sector-card.blue .sector-name{color:var(--blue-dark);}
+.sector-card.orange .sector-name{color:var(--orange-dark);}
+.sector-card.green .sector-name{color:var(--green-dark);}
+.sector-heat{display:flex;gap:4px;margin:8px 0;}
+.heat-dot{width:10px;height:10px;border-radius:50%;}
+.sector-card.blue .heat-dot{background:var(--blue);}
+.sector-card.orange .heat-dot{background:var(--orange);}
+.sector-card.green .heat-dot{background:var(--green);}
+
+/* ── 表格 ── */
+table{width:100%;border-collapse:collapse;font-size:14px;}
+th{background:#f8fafc;color:var(--dark);font-weight:700;padding:12px 14px;text-align:left;border-bottom:2px solid #e2e8f0;}
+td{padding:11px 14px;border-bottom:1px solid #f1f5f9;color:#374151;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#f8fafc;}
+.stock-code{font-family:monospace;font-weight:700;color:var(--blue-dark);background:var(--blue-light);padding:2px 7px;border-radius:5px;font-size:13px;}
+.lianban-badge{display:inline-block;padding:2px 9px;border-radius:12px;font-size:12px;font-weight:700;}
+.lb-1{background:#fef3c7;color:#92400e;}
+.lb-2{background:#fed7aa;color:#c2410c;}
+.lb-3plus{background:#fecaca;color:#991b1b;}
+
+/* ── 传导模型 ── */
+.transfer-box{border-radius:14px;overflow:hidden;margin-bottom:20px;border:1px solid #e2e8f0;}
+.transfer-header{padding:14px 20px;font-weight:700;font-size:15px;color:#fff;}
+.blue .transfer-header{background:var(--blue);}
+.orange .transfer-header{background:var(--orange);}
+.green .transfer-header{background:var(--green);}
+.transfer-body{padding:16px 20px;background:#fff;}
+.transfer-target{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:8px;margin-bottom:8px;font-size:14px;}
+.blue .transfer-target{background:var(--blue-light);}
+.orange .transfer-target{background:var(--orange-light);}
+.green .transfer-target{background:var(--green-light);}
+.score-badge{font-weight:800;font-size:16px;}
+.blue .score-badge{color:var(--blue-dark);}
+.orange .score-badge{color:var(--orange-dark);}
+.green .score-badge{color:var(--green-dark);}
+
+/* ── 四维对比矩阵 ── */
+.matrix-table th{font-size:13px;}
+.matrix-table td{font-size:13px;}
+.policy-score{font-weight:800;font-size:16px;}
+
+/* ── 操作建议 ── */
+.op-section{border-radius:12px;padding:20px;margin-bottom:14px;border:1px solid;}
+.op-section.blue{background:var(--blue-light);border-color:#bfdbfe;}
+.op-section.orange{background:var(--orange-light);border-color:#fed7aa;}
+.op-section.green{background:var(--green-light);border-color:#bbf7d0;}
+.op-title{font-weight:700;font-size:15px;margin-bottom:10px;}
+.blue .op-title{color:var(--blue-dark);}
+.orange .op-title{color:var(--orange-dark);}
+.green .op-title{color:var(--green-dark);}
+.pos-row{display:grid;grid-template-columns:auto 60px 1fr auto;gap:10px;align-items:center;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.7);margin-bottom:6px;font-size:13px;}
+.pos-ratio{font-weight:900;font-size:18px;}
+.blue .pos-ratio{color:var(--blue);}
+.orange .pos-ratio{color:var(--orange);}
+.green .pos-ratio{color:var(--green);}
+.scenario-row{display:grid;grid-template-columns:100px 1fr 60px;gap:10px;padding:8px;border-radius:8px;font-size:13px;margin-bottom:6px;background:rgba(255,255,255,.7);align-items:center;}
+.scenario-prob{font-weight:700;text-align:right;}
+
+/* ── 置信度标签 ── */
+.conf-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.conf-badge{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;}
+.conf-high{background:#dcfce7;color:#166534;}
+.conf-mid{background:#fef9c3;color:#854d0e;}
+.conf-low{background:#fee2e2;color:#991b1b;}
+
+/* ── 假设验证 ── */
+.assumption-row{display:grid;grid-template-columns:20px 1fr 50px 1fr;gap:10px;align-items:center;padding:10px 12px;border-radius:8px;border:1px solid #e2e8f0;margin-bottom:8px;font-size:13px;}
+.rel-high{color:#166534;font-weight:700;}
+.rel-mid{color:#854d0e;font-weight:700;}
+.rel-low{color:#991b1b;font-weight:700;}
+
+/* ── 产业链 ── */
+.chain-block{border-radius:14px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:20px;}
+.chain-header{padding:16px 20px;display:flex;align-items:center;gap:12px;}
+.chain-header.blue{background:linear-gradient(90deg,var(--blue-dark),var(--blue));color:#fff;}
+.chain-header.green{background:linear-gradient(90deg,var(--green-dark),var(--green));color:#fff;}
+.chain-theme{font-size:13px;opacity:.85;margin-top:2px;}
+.chain-stocks{padding:16px 20px;background:#fff;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.chain-stock{border-radius:10px;padding:14px;border:1px solid #e2e8f0;}
+.chain-stock-name{font-weight:700;font-size:15px;color:var(--dark);}
+.chain-stock-code{font-size:12px;color:var(--gray);font-family:monospace;}
+.chain-stock-feature{font-size:12px;color:#374151;margin-top:6px;line-height:1.5;}
+.chain-stock-status{font-size:11px;font-weight:700;margin-top:6px;}
+
+/* ── 质量自检 ── */
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.check-item{border-radius:10px;padding:14px;border:1px solid #e2e8f0;display:flex;align-items:flex-start;gap:10px;}
+.check-icon{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;background:#dcfce7;color:#166534;}
+.check-q{font-size:13px;font-weight:700;color:var(--dark);}
+.check-detail{font-size:12px;color:var(--gray);margin-top:3px;}
+
+/* ── 情景预案 ── */
+.scenario-block{border-radius:12px;padding:18px;border:1px solid #e2e8f0;margin-bottom:12px;}
+.sc-super{border-left:4px solid var(--green);background:var(--green-light);}
+.sc-base{border-left:4px solid var(--blue);background:var(--blue-light);}
+.sc-below{border-left:4px solid var(--orange);background:var(--orange-light);}
+
+/* ── 风险 ── */
+.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.risk-card{border-radius:12px;padding:20px;border:2px solid;}
+.risk-high{background:#fff1f2;border-color:#fca5a5;}
+.risk-mid{background:#fffbeb;border-color:#fde68a;}
+.risk-low{background:#f0fdf4;border-color:#bbf7d0;}
+.risk-level{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;display:inline-block;margin-bottom:8px;}
+.risk-high .risk-level{background:#fca5a5;color:#991b1b;}
+.risk-mid .risk-level{background:#fde68a;color:#854d0e;}
+.risk-low .risk-level{background:#bbf7d0;color:#166534;}
+
+/* ── 板块大标题 ── */
+.sector-big-title{display:flex;align-items:center;gap:14px;padding:20px 24px;border-radius:14px;margin-bottom:24px;color:#fff;}
+.sector-big-title.blue{background:linear-gradient(135deg,var(--blue-dark),var(--blue));}
+.sector-big-title.orange{background:linear-gradient(135deg,var(--orange-dark),var(--orange));}
+.sector-big-title.green{background:linear-gradient(135deg,var(--green-dark),var(--green));}
+.sbt-icon{font-size:36px;}
+.sbt-name{font-size:26px;font-weight:900;}
+.sbt-tag{font-size:13px;opacity:.85;margin-top:2px;}
+
+/* ── 分割线 ── */
+.divider{height:2px;background:linear-gradient(90deg,transparent,#e2e8f0,transparent);margin:24px 0;}
+
+/* ── 流程图（CSS模拟） ── */
+.flow-chart{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin:16px 0;}
+.flow-node{background:var(--blue-light);border:2px solid var(--blue);border-radius:10px;padding:10px 16px;font-size:13px;font-weight:700;color:var(--blue-dark);text-align:center;min-width:100px;}
+.flow-arrow{font-size:20px;color:var(--gray);margin:0 6px;}
+.flow-node.orange{background:var(--orange-light);border-color:var(--orange);color:var(--orange-dark);}
+.flow-node.green{background:var(--green-light);border-color:var(--green);color:var(--green-dark);}
+
+/* ── Footer ── */
+.footer{text-align:center;color:rgba(255,255,255,.5);font-size:13px;padding:24px;margin-top:16px;}
+
+/* ── 全页水印 ── */
+body::before{
+  content:'';
+  position:fixed;
+  top:0;left:0;width:100%;height:100%;
+  pointer-events:none;
+  z-index:9999;
+  user-select:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='22' font-weight='bold' font-family='Microsoft YaHei,SimHei,sans-serif' fill='rgba(120,120,120,0.07)' transform='rotate(-30,170,100)'%3E%E4%B8%AD%E5%8E%9F%E5%BA%84%E7%A8%BC%E6%B1%89%3C/text%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-size:340px 200px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ══ HEADER ══ -->
+<div class="header">
+  <div style="font-size:13px;opacity:.6;margin-bottom:8px;letter-spacing:2px;">STOCK MARKET REVIEW · DEEP ANALYSIS</div>
+  <h1>📈 2026年03月13日 股票深度复盘分析报告</h1>
+  <div class="sub">V3.0 | 多层传导模型 · 四维对比矩阵 · 置信度量化 · 可执行操作方案</div>
+  <!-- 作者 & 版权 -->
+  <div style="display:flex;justify-content:center;align-items:center;gap:24px;margin-top:18px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:30px;padding:7px 20px;backdrop-filter:blur(6px);">
+      <span style="font-size:15px;">✍️</span>
+      <span style="font-size:14px;font-weight:700;letter-spacing:1px;color:#fde68a;">作者：中原庄稼汉</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,180,0,.35);border-radius:30px;padding:7px 20px;backdrop-filter:blur(6px);">
+      <span style="font-size:15px;">🔒</span>
+      <span style="font-size:13px;color:#fca5a5;letter-spacing:.5px;">版权声明：未经作者授权禁止转发</span>
+    </div>
+  </div>
+  <div class="badge-row" style="margin-top:16px;">
+    <span class="badge">📊 总涨停 59 只</span>
+    <span class="badge">🏆 前三板块已深度解析</span>
+    <span class="badge">🎯 含三级传导模型</span>
+    <span class="badge">⚡ 含量化操作方案</span>
+    <span class="badge">🌍 含四维国际对比</span>
+  </div>
+</div>
+
+<!-- ══ 目录 ══ -->
+<div class="toc-card" id="toc">
+  <h2>📋 目录</h2>
+  <div class="toc-grid">
+    <a class="toc-item" onclick="document.getElementById('s1').scrollIntoView({behavior:'smooth'})">
+      <div class="toc-num">1</div><span>热点板块排名前三统计</span>
+    </a>
+    <a class="toc-item" onclick="document.getElementById('s2').scrollIntoView({behavior:'smooth'})">
+      <div class="toc-num">2</div><span>热点事件分析（含国际对比）</span>
+    </a>
+    <a class="toc-item" onclick="document.getElementById('s3').scrollIntoView({behavior:'smooth'})">
+      <div class="toc-num">3</div><span>多层传导模型与受益度排序</span>
+    </a>
+    <a class="toc-item" onclick="document.getElementById('s4').scrollIntoView({behavior:'smooth'})">
+      <div class="toc-num">4</div><span>四维国际对比矩阵</span>
+    </a>
+    <a class="toc-item" onclick="document.getElementById('s5').scrollIntoView({behavior:'smooth'})">
+      <div class="toc-num">5</div><span>产业链深度挖掘</span>
+    </a>
+    <a class="toc-item" onclick="document.getElementById('s6').scrollIntoView({behavior:'smooth'})">
+      <div class="toc-num">6</div><span>可执行操作方案</span>
+    </a>
+    <a class="toc-item" onclick="document.getElementById('s7').scrollIntoView({behavior:'smooth'})">
+      <div class="toc-num">7</div><span>多维度风险分析</span>
+    </a>
+    <a class="toc-item" onclick="document.getElementById('s8').scrollIntoView({behavior:'smooth'})">
+      <div class="toc-num">8</div><span>逻辑推导过程可视化</span>
+    </a>
+    <a class="toc-item" onclick="document.getElementById('s9').scrollIntoView({behavior:'smooth'})">
+      <div class="toc-num">9</div><span>关键假设与验证</span>
+    </a>
+    <a class="toc-item" onclick="document.getElementById('s10').scrollIntoView({behavior:'smooth'})">
+      <div class="toc-num">10</div><span>交叉验证与质量自检</span>
+    </a>
+  </div>
+</div>
+
+<!-- ══ 第一章：热点板块排名 ══ -->
+<div class="section" id="s1">
+  <div class="section-title"><span class="chapter-tag">第一章</span> 热点板块排名前三统计</div>
+  <div class="section-subtitle">基于 2026年03月13日 涨停股数据统计 · 共 59 只涨停 · 代表性个股按「连板天数→涨幅→市值」排序</div>
+
+  <div class="stat-row">
+    <div class="stat-card blue"><div class="stat-num">59</div><div class="stat-label">当日涨停总数</div></div>
+    <div class="stat-card orange"><div class="stat-num">7</div><div class="stat-label">🥇 风电</div></div>
+    <div class="stat-card green"><div class="stat-num">5</div><div class="stat-label">🥈 核聚变</div></div>
+    <div class="stat-card purple"><div class="stat-num">4</div><div class="stat-label">🥉 石油化工</div></div>
+  </div>
+
+  <div class="sector-rank-grid">
+
+    <div class="sector-card blue">
+      <div class="sector-rank-num">01</div>
+      <div class="sector-name">🥇 风电</div>
+      <div style="font-size:13px;color:#6b7280;margin-bottom:8px;">涨停 <b style="font-size:18px;">7</b> 只</div>
+      <div class="sector-heat"><div class="heat-dot"></div><div class="heat-dot"></div><div class="heat-dot"></div><div class="heat-dot"></div><div class="heat-dot"></div><div class="heat-dot"></div><div class="heat-dot"></div></div>
+      <div style="font-size:12px;color:#6b7280;margin-top:8px;">热点：英国取消风电组件进口关税，降低中国风电设备出口成本...</div>
+      <div style="margin-top:16px;">
+        <table>
+          <thead><tr><th>代码</th><th>名称</th><th>连板</th><th>涨幅%</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="stock-code">002487</span></td>
+              <td><b>大金重工</b></td>
+              <td><span class="lianban-badge lb-2">2板</span></td>
+              <td style="font-weight:700;color:#dc2626;">10.00%</td>
+            </tr>
+            <tr>
+              <td><span class="stock-code">300185</span></td>
+              <td><b>通裕重工</b></td>
+              <td><span class="lianban-badge lb-1">1板</span></td>
+              <td style="font-weight:700;color:#dc2626;">19.94%</td>
+            </tr>
+            <tr>
+              <td><span class="stock-code">603062</span></td>
+              <td><b>麦加芯彩</b></td>
+              <td><span class="lianban-badge lb-1">1板</span></td>
+              <td style="font-weight:700;color:#dc2626;">10.01%</td>
+            </tr>
+            <tr>
+              <td><span class="stock-code">002669</span></td>
+              <td><b>康达新材</b></td>
+              <td><span class="lianban-badge lb-1">1板</span></td>
+              <td style="font-weight:700;color:#dc2626;">10.04%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="sector-card orange">
+      <div class="sector-rank-num">02</div>
+      <div class="sector-name">🥈 核聚变</div>
+      <div style="font-size:13px;color:#6b7280;margin-bottom:8px;">涨停 <b style="font-size:18px;">5</b> 只</div>
+      <div class="sector-heat"><div class="heat-dot"></div><div class="heat-dot"></div><div class="heat-dot"></div><div class="heat-dot"></div><div class="heat-dot"></div></div>
+      <div style="font-size:12px;color:#6b7280;margin-top:8px;">热点：中国加入《三倍核能宣言》，核聚变技术加速推进...</div>
+      <div style="margin-top:16px;">
+        <table>
+          <thead><tr><th>代码</th><th>名称</th><th>连板</th><th>涨幅%</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="stock-code">603280</span></td>
+              <td><b>南方路机</b></td>
+              <td><span class="lianban-badge lb-1">1板</span></td>
+              <td style="font-weight:700;color:#dc2626;">10.00%</td>
+            </tr>
+            <tr>
+              <td><span class="stock-code">603169</span></td>
+              <td><b>兰石重装</b></td>
+              <td><span class="lianban-badge lb-1">1板</span></td>
+              <td style="font-weight:700;color:#dc2626;">9.97%</td>
+            </tr>
+            <tr>
+              <td><span class="stock-code">605222</span></td>
+              <td><b>起帆电缆</b></td>
+              <td><span class="lianban-badge lb-1">1板</span></td>
+              <td style="font-weight:700;color:#dc2626;">10.02%</td>
+            </tr>
+            <tr>
+              <td><span class="stock-code">601611</span></td>
+              <td><b>中国核建</b></td>
+              <td><span class="lianban-badge lb-1">1板</span></td>
+              <td style="font-weight:700;color:#dc2626;">10.02%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="sector-card green">
+      <div class="sector-rank-num">03</div>
+      <div class="sector-name">🥉 石油化工</div>
+      <div style="font-size:13px;color:#6b7280;margin-bottom:8px;">涨停 <b style="font-size:18px;">4</b> 只</div>
+      <div class="sector-heat"><div class="heat-dot"></div><div class="heat-dot"></div><div class="heat-dot"></div><div class="heat-dot"></div></div>
+      <div style="font-size:12px;color:#6b7280;margin-top:8px;">热点：全球规模最大的液化天然气出口工厂停摆，能源价格上涨...</div>
+      <div style="margin-top:16px;">
+        <table>
+          <thead><tr><th>代码</th><th>名称</th><th>连板</th><th>涨幅%</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="stock-code">600722</span></td>
+              <td><b>金牛化工</b></td>
+              <td><span class="lianban-badge lb-3plus">3板</span></td>
+              <td style="font-weight:700;color:#dc2626;">10.00%</td>
+            </tr>
+            <tr>
+              <td><span class="stock-code">600370</span></td>
+              <td><b>三房巷</b></td>
+              <td><span class="lianban-badge lb-2">2板</span></td>
+              <td style="font-weight:700;color:#dc2626;">10.08%</td>
+            </tr>
+            <tr>
+              <td><span class="stock-code">002637</span></td>
+              <td><b>赞宇科技</b></td>
+              <td><span class="lianban-badge lb-1">1板</span></td>
+              <td style="font-weight:700;color:#dc2626;">9.98%</td>
+            </tr>
+            <tr>
+              <td><span class="stock-code">002165</span></td>
+              <td><b>红宝丽</b></td>
+              <td><span class="lianban-badge lb-1">1板</span></td>
+              <td style="font-weight:700;color:#dc2626;">10.00%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 第二章：热点事件分析 ══ -->
+<div class="section" id="s2">
+  <div class="section-title"><span class="chapter-tag">第二章</span> 热点事件分析（含国际对比）</div>
+  <div class="section-subtitle">前三板块的核心驱动事件、起始时间、持续性分析及置信度评估</div>
+
+  <!-- 风电板块事件分析 -->
+  <div class="sector-big-title blue">
+    <div class="sbt-icon">🌬️</div>
+    <div>
+      <div class="sbt-name">风电板块事件分析</div>
+      <div class="sbt-tag">中期持续性 3-6个月</div>
+    </div>
+  </div>
+  <ul style="margin-bottom:16px;font-size:14px;line-height:1.8;">
+    <li><b>事件起源：</b>2026年3月，英国政府宣布自4月1日起取消33项风电组件进口关税，直接利好中国风电设备出口</li>
+    <li><b>核心驱动：</b>降低中国风电设备对英出口成本15%-25%，提升中国风电企业国际竞争力</li>
+    <li><b>政策影响：</b>英国作为欧洲风电重要市场，此举可能引发欧洲其他国家效仿，加速中国风电出海</li>
+    <li><b>持续性理由：</b>能源转型是大趋势，风电作为清洁能源获得政策持续支持，中长期需求旺盛</li>
+  </ul>
+  <div class="conf-row">
+    <span class="conf-badge conf-high">高置信度 8.5/10</span>
+    <span class="conf-badge conf-mid">政策催化</span>
+    <span class="conf-badge conf-mid">国际影响</span>
+  </div>
+  <div class="divider"></div>
+
+  <!-- 核聚变板块事件分析 -->
+  <div class="sector-big-title orange">
+    <div class="sbt-icon">☢️</div>
+    <div>
+      <div class="sbt-name">核聚变板块事件分析</div>
+      <div class="sbt-tag">中长期持续性 1-3年</div>
+    </div>
+  </div>
+  <ul style="margin-bottom:16px;font-size:14px;line-height:1.8;">
+    <li><b>事件起源：</b>2026年2月，中国正式加入《三倍核能宣言》，承诺到2050年将核能装机容量提高三倍</li>
+    <li><b>核心驱动：</b>核聚变作为终极清洁能源，获得国家战略层面重点支持，技术突破加速</li>
+    <li><b>政策影响：</b>国家加大核聚变研发投入，相关上市公司获得订单和政策红利</li>
+    <li><b>持续性理由：</b>核聚变是未来能源革命核心，国家战略支持长期不变，技术商业化进程持续</li>
+  </ul>
+  <div class="conf-row">
+    <span class="conf-badge conf-high">高置信度 9/10</span>
+    <span class="conf-badge conf-high">国家战略</span>
+    <span class="conf-badge conf-high">技术革命</span>
+  </div>
+  <div class="divider"></div>
+
+  <!-- 石油化工板块事件分析 -->
+  <div class="sector-big-title green">
+    <div class="sbt-icon">🛢️</div>
+    <div>
+      <div class="sbt-name">石油化工板块事件分析</div>
+      <div class="sbt-tag">短期持续性 1-3个月</div>
+    </div>
+  </div>
+  <ul style="margin-bottom:16px;font-size:14px;line-height:1.8;">
+    <li><b>事件起源：</b>2026年3月，全球规模最大的液化天然气出口工厂（卡塔尔）因技术问题停摆</li>
+    <li><b>核心驱动：</b>LNG供应骤减导致国际能源价格飙升，石油化工产业链受益于成本推动</li>
+    <li><b>市场影响：</b>能源价格上涨推动化工产品价格反弹，相关企业盈利预期改善</li>
+    <li><b>持续性理由：</b>LNG工厂停摆属短期事件，预计3-6个月内恢复，价格上涨持续性有限</li>
+  </ul>
+  <div class="conf-row">
+    <span class="conf-badge conf-mid">中置信度 7/10</span>
+    <span class="conf-badge conf-mid">事件驱动</span>
+    <span class="conf-badge conf-low">短期波动</span>
+  </div>
+</div>
+
+<!-- ══ 第三章：多层传导模型 ══ -->
+<div class="section" id="s3">
+  <div class="section-title"><span class="chapter-tag">第三章</span> 多层传导模型与受益度排序</div>
+  <div class="section-subtitle">前三板块的三级传导路径分析，受益度评分（0-10分）</div>
+
+  <!-- 风电传导 -->
+  <div class="transfer-box blue">
+    <div class="transfer-header">🌬️ 风电板块传导模型</div>
+    <div class="transfer-body">
+      <div style="font-weight:700;margin-bottom:10px;color:var(--blue-dark);">第一级：核心事件直接受益</div>
+      <div class="transfer-target">
+        <span><b>大金重工</b> 风电塔筒出口龙头</span>
+        <span class="score-badge">受益度 9分</span>
+      </div>
+      <div class="transfer-target">
+        <span><b>通裕重工</b> 风电主轴制造商</span>
+        <span class="score-badge">受益度 8.5分</span>
+      </div>
+      <div style="font-weight:700;margin:10px 0;color:var(--blue-dark);">第二级：产业传导受益</div>
+      <div class="transfer-target">
+        <span><b>天顺风能</b> 风电叶片制造</span>
+        <span class="score-badge">受益度 7分</span>
+      </div>
+      <div class="transfer-target">
+        <span><b>吉鑫科技</b> 铸造件供应商</span>
+        <span class="score-badge">受益度 6.5分</span>
+      </div>
+      <div style="font-weight:700;margin:10px 0;color:var(--blue-dark);">第三级：相关扩散受益</div>
+      <div class="transfer-target">
+        <span><b>麦加芯彩</b> 风电涂料供应商</span>
+        <span class="score-badge">受益度 6分</span>
+      </div>
+      <div class="transfer-target">
+        <span><b>康达新材</b> 风电胶粘剂</span>
+        <span class="score-badge">受益度 5.5分</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 核聚变传导 -->
+  <div class="transfer-box orange">
+    <div class="transfer-header">☢️ 核聚变板块传导模型</div>
+    <div class="transfer-body">
+      <div style="font-weight:700;margin-bottom:10px;color:var(--orange-dark);">第一级：核心事件直接受益</div>
+      <div class="transfer-target">
+        <span><b>中国核建</b> 核电站建设龙头</span>
+        <span class="score-badge">受益度 9.5分</span>
+      </div>
+      <div class="transfer-target">
+        <span><b>兰石重装</b> 核电设备制造商</span>
+        <span class="score-badge">受益度 9分</span>
+      </div>
+      <div style="font-weight:700;margin:10px 0;color:var(--orange-dark);">第二级：产业传导受益</div>
+      <div class="transfer-target">
+        <span><b>起帆电缆</b> 核电特种电缆</span>
+        <span class="score-badge">受益度 7.5分</span>
+      </div>
+      <div class="transfer-target">
+        <span><b>江苏神通</b> 核电阀门供应商</span>
+        <span class="score-badge">受益度 7分</span>
+      </div>
+      <div style="font-weight:700;margin:10px 0;color:var(--orange-dark);">第三级：相关扩散受益</div>
+      <div class="transfer-target">
+        <span><b>南方路机</b> 核电建材设备</span>
+        <span class="score-badge">受益度 6分</span>
+      </div>
+      <div class="transfer-target">
+        <span><b>其他核能配套</b> 零部件供应</span>
+        <span class="score-badge">受益度 5分</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 石油化工传导 -->
+  <div class="transfer-box green">
+    <div class="transfer-header">🛢️ 石油化工板块传导模型</div>
+    <div class="transfer-body">
+      <div style="font-weight:700;margin-bottom:10px;color:var(--green-dark);">第一级：核心事件直接受益</div>
+      <div class="transfer-target">
+        <span><b>金牛化工</b> 甲醇价格上涨受益</span>
+        <span class="score-badge">受益度 8.5分</span>
+      </div>
+      <div class="transfer-target">
+        <span><b>三房巷</b> 精对苯二甲酸涨价</span>
+        <span class="score-badge">受益度 8分</span>
+      </div>
+      <div style="font-weight:700;margin:10px 0;color:var(--green-dark);">第二级：产业传导受益</div>
+      <div class="transfer-target">
+        <span><b>赞宇科技</b> 表面活性剂</span>
+        <span class="score-badge">受益度 7分</span>
+      </div>
+      <div class="transfer-target">
+        <span><b>红宝丽</b> 聚氨酯原料</span>
+        <span class="score-badge">受益度 6.5分</span>
+      </div>
+      <div style="font-weight:700;margin:10px 0;color:var(--green-dark);">第三级：相关扩散受益</div>
+      <div class="transfer-target">
+        <span><b>江苏索普</b> 醋酸产业链</span>
+        <span class="score-badge">受益度 6分</span>
+      </div>
+      <div class="transfer-target">
+        <span><b>其他化工</b> 成本传导</span>
+        <span class="score-badge">受益度 5分</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 第四章：四维国际对比矩阵 ══ -->
+<div class="section" id="s4">
+  <div class="section-title"><span class="chapter-tag">第四章</span> 四维国际对比矩阵</div>
+  <div class="section-subtitle">中/美/欧+英国的政策环境与市场成熟度对比</div>
+
+  <table class="matrix-table">
+    <thead>
+      <tr>
+        <th>国家/地区</th>
+        <th>风电政策环境</th>
+        <th>核电政策环境</th>
+        <th>市场成熟度</th>
+        <th>综合评分</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>中国 🇨🇳</b></td>
+        <td>碳中和目标坚定</td>
+        <td>三倍核能宣言</td>
+        <td>全球最大市场</td>
+        <td class="policy-score" style="color:var(--blue);">9.0/10</td>
+        <td>政策支持力度最大</td>
+      </tr>
+      <tr>
+        <td><b>英国 🇬🇧</b></td>
+        <td>取消风电关税</td>
+        <td>核电稳步发展</td>
+        <td>欧洲风电枢纽</td>
+        <td class="policy-score" style="color:var(--blue);">8.5/10</td>
+        <td>海上风电领先</td>
+      </tr>
+      <tr>
+        <td><b>欧盟 🇪🇺</b></td>
+        <td>绿色协议</td>
+        <td>能源转型</td>
+        <td>成熟度高</td>
+        <td class="policy-score" style="color:var(--blue);">8.0/10</td>
+        <td>统一政策体系</td>
+      </tr>
+      <tr>
+        <td><b>美国 🇺🇸</b></td>
+        <td>IRA法案支持</td>
+        <td>重启核电</td>
+        <td>复苏中</td>
+        <td class="policy-score" style="color:var(--blue);">7.5/10</td>
+        <td>政策摇摆中</td>
+      </tr>
+      <tr>
+        <td><b>卡塔尔 🇶🇦</b></td>
+        <td>LNG出口为主</td>
+        <td>核电发展</td>
+        <td>能源出口国</td>
+        <td class="policy-score" style="color:var(--blue);">6.5/10</td>
+        <td>供应扰动源</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ 第五章：产业链深度挖掘 ══ -->
+<div class="section" id="s5">
+  <div class="section-title"><span class="chapter-tag">第五章</span> 产业链深度挖掘</div>
+  <div class="section-subtitle">TOP2板块（风电、核聚变）的3个子产业链深度分析，寻找"利好但未大涨"标的</div>
+
+  <!-- 风电产业链 -->
+  <div class="sector-big-title blue">
+    <div class="sbt-icon">🌬️</div>
+    <div>
+      <div class="sbt-name">风电产业链深度挖掘</div>
+      <div class="sbt-tag">重点寻找出海受益标的</div>
+    </div>
+  </div>
+
+  <div class="chain-block">
+    <div class="chain-header blue">
+      <div style="font-size:24px;">⚙️</div>
+      <div>
+        <div style="font-weight:700;font-size:16px;">整机制造子链</div>
+        <div class="chain-theme">核心：塔筒、叶片、主轴制造</div>
+      </div>
+    </div>
+    <div class="chain-stocks">
+      <div class="chain-stock">
+        <div class="chain-stock-name">大金重工</div>
+        <div class="chain-stock-code">002487</div>
+        <div class="chain-stock-feature">风电塔筒出口龙头，英国市场占比较高，关税取消直接受益</div>
+        <div class="chain-stock-status" style="color:var(--green);">近期连板2板，趋势向上</div>
+      </div>
+      <div class="chain-stock">
+        <div class="chain-stock-name">通裕重工</div>
+        <div class="chain-stock-code">300185</div>
+        <div class="chain-stock-feature">风电主轴制造商，订单饱满，出口占比提升</div>
+        <div class="chain-stock-status" style="color:var(--orange);">今日涨停20%，追高需谨慎</div>
+      </div>
+      <div class="chain-stock">
+        <div class="chain-stock-name">天顺风能</div>
+        <div class="chain-stock-code">002531</div>
+        <div class="chain-stock-feature">风电叶片龙头，海外市场拓展顺利，估值合理</div>
+        <div class="chain-stock-status" style="color:var(--green);">近期震荡蓄势，值得关注</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chain-block">
+    <div class="chain-header blue">
+      <div style="font-size:24px;">🧱</div>
+      <div>
+        <div style="font-weight:700;font-size:16px;">核心零部件子链</div>
+        <div class="chain-theme">核心：铸件、轴承、齿轮箱</div>
+      </div>
+    </div>
+    <div class="chain-stocks">
+      <div class="chain-stock">
+        <div class="chain-stock-name">吉鑫科技</div>
+        <div class="chain-stock-code">601218</div>
+        <div class="chain-stock-feature">风电铸件龙头，技术领先，海外订单增长</div>
+        <div class="chain-stock-status" style="color:var(--green);">近期低位启动，补涨潜力大</div>
+      </div>
+      <div class="chain-stock">
+        <div class="chain-stock-name">锡华科技</div>
+        <div class="chain-stock-code">603248</div>
+        <div class="chain-stock-feature">风电精密铸造，客户覆盖全球头部整机商</div>
+        <div class="chain-stock-status" style="color:var(--orange);">今日涨停，涨幅适中</div>
+      </div>
+      <div class="chain-stock">
+        <div class="chain-stock-name">中材科技</div>
+        <div class="chain-stock-code">002080</div>
+        <div class="chain-stock-feature">风电叶片+玻纤，产业链一体化优势</div>
+        <div class="chain-stock-status" style="color:var(--gray);">利好未大涨，估值偏低</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chain-block">
+    <div class="chain-header blue">
+      <div style="font-size:24px;">🎨</div>
+      <div>
+        <div style="font-weight:700;font-size:16px;">配套材料子链</div>
+        <div class="chain-theme">核心：涂料、胶粘剂、复合材料</div>
+      </div>
+    </div>
+    <div class="chain-stocks">
+      <div class="chain-stock">
+        <div class="chain-stock-name">麦加芯彩</div>
+        <div class="chain-stock-code">603062</div>
+        <div class="chain-stock-feature">风电涂料龙头，耐腐蚀技术领先</div>
+        <div class="chain-stock-status" style="color:var(--orange);">今日涨停，连板潜力</div>
+      </div>
+      <div class="chain-stock">
+        <div class="chain-stock-name">康达新材</div>
+        <div class="chain-stock-code">002669</div>
+        <div class="chain-stock-feature">风电胶粘剂供应商，技术壁垒高</div>
+        <div class="chain-stock-status" style="color:var(--orange);">今日涨停，趋势确立</div>
+      </div>
+      <div class="chain-stock">
+        <div class="chain-stock-name">东方电缆</div>
+        <div class="chain-stock-code">603606</div>
+        <div class="chain-stock-feature">海底电缆龙头，海上风电受益明显</div>
+        <div class="chain-stock-status" style="color:var(--gray);">利好未大涨，具备补涨逻辑</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 核聚变产业链 -->
+  <div class="sector-big-title orange">
+    <div class="sbt-icon">☢️</div>
+    <div>
+      <div class="sbt-name">核聚变产业链深度挖掘</div>
+      <div class="sbt-tag">重点寻找技术突破受益标的</div>
+    </div>
+  </div>
+
+  <div class="chain-block">
+    <div class="chain-header green">
+      <div style="font-size:24px;">🏗️</div>
+      <div>
+        <div style="font-weight:700;font-size:16px;">核电建设子链</div>
+        <div class="chain-theme">核心：核电站建设、工程设计</div>
+      </div>
+    </div>
+    <div class="chain-stocks">
+      <div class="chain-stock">
+        <div class="chain-stock-name">中国核建</div>
+        <div class="chain-stock-code">601611</div>
+        <div class="chain-stock-feature">核电站建设龙头，订单饱满，三倍核能宣言直接受益</div>
+        <div class="chain-stock-status" style="color:var(--orange);">今日涨停，中长期看好</div>
+      </div>
+      <div class="chain-stock">
+        <div class="chain-stock-name">兰石重装</div>
+        <div class="chain-stock-code">603169</div>
+        <div class="chain-stock-feature">核电设备制造商，核聚变装置关键设备</div>
+        <div class="chain-stock-status" style="color:var(--orange);">今日涨停，技术突破预期</div>
+      </div>
+      <div class="chain-stock">
+        <div class="chain-stock-name">中国核电</div>
+        <div class="chain-stock-code">601985</div>
+        <div class="chain-stock-feature">核电运营商，装机容量持续增长</div>
+        <div class="chain-stock-status" style="color:var(--gray);">利好未大涨，稳健配置标的</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chain-block">
+    <div class="chain-header green">
+      <div style="font-size:24px;">🔧</div>
+      <div>
+        <div style="font-weight:700;font-size:16px;">核心设备子链</div>
+        <div class="chain-theme">核心：核岛设备、特种电缆、阀门</div>
+      </div>
+    </div>
+    <div class="chain-stocks">
+      <div class="chain-stock">
+        <div class="chain-stock-name">起帆电缆</div>
+        <div class="chain-stock-code">605222</div>
+        <div class="chain-stock-feature">核电特种电缆龙头，安全等级高</div>
+        <div class="chain-stock-status" style="color:var(--orange);">今日涨停，需求稳定</div>
+      </div>
+      <div class="chain-stock">
+        <div class="chain-stock-name">江苏神通</div>
+        <div class="chain-stock-code">002438</div>
+        <div class="chain-stock-feature">核电阀门龙头，进口替代加速</div>
+        <div class="chain-stock-status" style="color:var(--gray);">利好未大涨，补涨潜力</div>
+      </div>
+      <div class="chain-stock">
+        <div class="chain-stock-name">上海电气</div>
+        <div class="chain-stock-code">601727</div>
+        <div class="chain-stock-feature">核电设备龙头，核聚变装置关键设备</div>
+        <div class="chain-stock-status" style="color:var(--gray);">利好未大涨，技术突破预期</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chain-block">
+    <div class="chain-header green">
+      <div style="font-size:24px;">🧪</div>
+      <div>
+        <div style="font-weight:700;font-size:16px">配套服务子链</div>
+        <div class="chain-theme">核心：材料供应、工程建设</div>
+      </div>
+    </div>
+    <div class="chain-stocks">
+      <div class="chain-stock">
+        <div class="chain-stock-name">南方路机</div>
+        <div class="chain-stock-code">603280</div>
+        <div class="chain-stock-feature">核电站建材设备供应商</div>
+        <div class="chain-stock-status" style="color:var(--orange);">今日涨停，核电建设加速</div>
+      </div>
+      <div class="chain-stock">
+        <div class="chain-stock-name">东方钽业</div>
+        <div class="chain-stock-code">000962</div>
+        <div class="chain-stock-feature">稀有金属材料，核聚变装置关键材料</div>
+        <div class="chain-stock-status" style="color:var(--gray);">利好未大涨，稀缺性标的</div>
+      </div>
+      <div class="chain-stock">
+        <div class="chain-stock-name">宝钛股份</div>
+        <div class="chain-stock-code">600456</div>
+        <div class="chain-stock-feature">核电用钛材龙头，核级产品认证</div>
+        <div class="chain-stock-status" style="color:var(--gray);">利好未大涨，估值合理</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 第六章：可执行操作方案 ══ -->
+<div class="section" id="s6">
+  <div class="section-title"><span class="chapter-tag">第六章</span> 可执行操作方案</div>
+  <div class="section-subtitle">买入时机、仓位分配、止损止盈、三情景预案</div>
+
+  <!-- 风电操作方案 -->
+  <div class="op-section blue">
+    <div class="op-title">🌬️ 风电板块操作方案</div>
+    <div style="margin-bottom:12px;"><b>买入时机：</b>回调至5日均线附近分批买入，避免追高</div>
+    <div class="pos-row">
+      <span><b>大金重工</b></span>
+      <span class="pos-ratio">35%</span>
+      <span>风电出海龙头，英国市场占比较高，关税取消直接受益</span>
+      <span>🔥 核心</span>
+    </div>
+    <div class="pos-row">
+      <span><b>天顺风能</b></span>
+      <span class="pos-ratio">30%</span>
+      <span>风电叶片龙头，海外市场拓展顺利，估值合理</span>
+      <span>⭐ 推荐</span>
+    </div>
+    <div class="pos-row">
+      <span><b>中材科技</b></span>
+      <span class="pos-ratio">20%</span>
+      <span>风电叶片+玻纤，产业链一体化优势，利好未大涨</span>
+      <span>💡 补涨</span>
+    </div>
+    <div class="pos-row">
+      <span><b>东方电缆</b></span>
+      <span class="pos-ratio">15%</span>
+      <span>海底电缆龙头，海上风电受益明显</span>
+      <span>📌 配置</span>
+    </div>
+    <div style="margin-top:12px;padding:10px;background:rgba(255,255,255,.9);border-radius:8px;">
+      <div style="font-weight:700;color:var(--blue-dark);margin-bottom:6px;">止损止盈策略</div>
+      <div style="font-size:13px;">
+        止损位：跌破10日均线<br>
+        目标位：前期高点+10%~15%
+      </div>
+    </div>
+  </div>
+
+  <!-- 核聚变操作方案 -->
+  <div class="op-section orange">
+    <div class="op-title">☢️ 核聚变板块操作方案</div>
+    <div style="margin-bottom:12px;"><b>买入时机：</b>逢回调低吸，中长期持有，关注技术突破进展</div>
+    <div class="pos-row">
+      <span><b>中国核建</b></span>
+      <span class="pos-ratio">40%</span>
+      <span>核电站建设龙头，三倍核能宣言直接受益</span>
+      <span>🔥 核心</span>
+    </div>
+    <div class="pos-row">
+      <span><b>兰石重装</b></span>
+      <span class="pos-ratio">30%</span>
+      <span>核电设备制造商，核聚变装置关键设备</span>
+      <span>⭐ 推荐</span>
+    </div>
+    <div class="pos-row">
+      <span><b>上海电气</b></span>
+      <span class="pos-ratio">20%</span>
+      <span>核电设备龙头，核聚变装置关键设备，利好未大涨</span>
+      <span>💡 补涨</span>
+    </div>
+    <div class="pos-row">
+      <span><b>东方钽业</b></span>
+      <span class="pos-ratio">10%</span>
+      <span>稀有金属材料，核聚变装置关键材料，稀缺性标的</span>
+      <span>📌 配置</span>
+    </div>
+    <div style="margin-top:12px;padding:10px;background:rgba(255,255,255,.9);border-radius:8px;">
+      <div style="font-weight:700;color:var(--orange-dark);margin-bottom:6px;">止损止盈策略</div>
+      <div style="font-size:13px;">
+        止损位：跌破20日均线<br>
+        目标位：中长期持有，等待技术突破催化
+      </div>
+    </div>
+  </div>
+
+  <!-- 三情景预案 -->
+  <div style="margin-top:20px;">
+    <div style="font-size:18px;font-weight:700;margin-bottom:12px;">📊 三情景预案</div>
+    <div class="scenario-block sc-super">
+      <div style="font-weight:700;margin-bottom:8px;color:var(--green-dark);">🌟 超预期情景（概率30%）</div>
+      <div class="scenario-row">
+        <span>风电</span>
+        <span>欧洲其他国家效仿英国取消关税，中国风电出海加速</span>
+        <span class="scenario-prob" style="color:var(--green);">+30%</span>
+      </div>
+      <div class="scenario-row">
+        <span>核聚变</span>
+        <span>核聚变技术取得重大突破，商业化进程加速</span>
+        <span class="scenario-prob" style="color:var(--green);">+50%</span>
+      </div>
+    </div>
+    <div class="scenario-block sc-base">
+      <div style="font-weight:700;margin-bottom:8px;color:var(--blue-dark);">📈 基准情景（概率50%）</div>
+      <div class="scenario-row">
+        <span>风电</span>
+        <span>英国关税取消落地，中国风电对英出口增长</span>
+        <span class="scenario-prob" style="color:var(--blue);">+15%</span>
+      </div>
+      <div class="scenario-row">
+        <span>核聚变</span>
+        <span>政策持续支持，技术稳步推进</span>
+        <span class="scenario-prob" style="color:var(--blue);">+20%</span>
+      </div>
+    </div>
+    <div class="scenario-block sc-below">
+      <div style="font-weight:700;margin-bottom:8px;color:var(--orange-dark);">📉 低于预期情景（概率20%）</div>
+      <div class="scenario-row">
+        <span>风电</span>
+        <span>国际贸易摩擦加剧，风电出口受阻</span>
+        <span class="scenario-prob" style="color:var(--orange);">-10%</span>
+      </div>
+      <div class="scenario-row">
+        <span>核聚变</span>
+        <span>技术突破不及预期，商业化进程放缓</span>
+        <span class="scenario-prob" style="color:var(--orange);">-15%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 第七章：多维度风险分析 ══ -->
+<div class="section" id="s7">
+  <div class="section-title"><span class="chapter-tag">第七章</span> 多维度风险分析</div>
+  <div class="section-subtitle">高/中/低三类风险及对冲策略</div>
+
+  <div class="risk-grid">
+    <div class="risk-card risk-high">
+      <div class="risk-level">高风险</div>
+      <div style="font-weight:700;margin-bottom:8px;margin-top:4px;">政策风险</div>
+      <div style="font-size:13px;line-height:1.6;margin-bottom:10px;">
+        风电：国际贸易政策变化，关税可能调整<br>
+        核聚变：政策支持力度可能减弱
+      </div>
+      <div style="font-weight:700;color:var(--red);margin-bottom:6px;">对冲策略</div>
+      <div style="font-size:12px;">
+        分散配置，不单一依赖政策催化
+      </div>
+    </div>
+    <div class="risk-card risk-high">
+      <div class="risk-level">高风险</div>
+      <div style="font-weight:700;margin-bottom:8px;margin-top:4px;">市场情绪风险</div>
+      <div style="font-size:13px;line-height:1.6;margin-bottom:10px;">
+        热点轮动加快，持续性不足<br>
+        资金流向变化快，追高风险
+      </div>
+      <div style="font-weight:700;color:var(--red);margin-bottom:6px;">对冲策略</div>
+      <div style="font-size:12px;">
+        控制仓位，避免全仓追高
+      </div>
+    </div>
+    <div class="risk-card risk-mid">
+      <div class="risk-level">中风险</div>
+      <div style="font-weight:700;margin-bottom:8px;margin-top:4px;">技术风险</div>
+      <div style="font-size:13px;line-height:1.6;margin-bottom:10px;">
+        核聚变技术突破不及预期<br>
+        技术路线调整风险
+      </div>
+      <div style="font-weight:700;color:#ca8a04;margin-bottom:6px;">对冲策略</div>
+      <div style="font-size:12px;">
+        关注技术进展，及时调整策略
+      </div>
+    </div>
+    <div class="risk-card risk-mid">
+      <div class="risk-level">中风险</div>
+      <div style="font-weight:700;margin-bottom:8px;margin-top:4px;">估值风险</div>
+      <div style="font-size:13px;line-height:1.6;margin-bottom:10px;">
+        部分个股涨幅较大，估值偏高<br>
+        业绩兑现不及预期
+      </div>
+      <div style="font-weight:700;color:#ca8a04;margin-bottom:6px;">对冲策略</div>
+      <div style="font-size:12px;">
+        选择估值合理的标的，避免追高
+      </div>
+    </div>
+    <div class="risk-card risk-low">
+      <div class="risk-level">低风险</div>
+      <div style="font-weight:700;margin-bottom:8px;margin-top:4px;">行业周期风险</div>
+      <div style="font-size:13px;line-height:1.6;margin-bottom:10px;">
+        风电装机量增速放缓<br>
+        核电建设周期长，不确定性
+      </div>
+      <div style="font-weight:700;color:#166534;margin-bottom:6px;">对冲策略</div>
+      <div style="font-size:12px;">
+        中长期持有，关注行业趋势
+      </div>
+    </div>
+    <div class="risk-card risk-low">
+      <div class="risk-level">低风险</div>
+      <div style="font-weight:700;margin-bottom:8px;margin-top:4px;">竞争格局风险</div>
+      <div style="font-size:13px;line-height:1.6;margin-bottom:10px;">
+        行业内竞争加剧<br>
+        价格战风险
+      </div>
+      <div style="font-weight:700;color:#166534;margin-bottom:6px;">对冲策略</div>
+      <div style="font-size:12px;">
+        选择龙头公司，竞争优势明显
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 第八章：逻辑推导过程可视化 ══ -->
+<div class="section" id="s8">
+  <div class="section-title"><span class="chapter-tag">第八章</span> 逻辑推导过程可视化</div>
+  <div class="section-subtitle">三条逻辑链：政策催化→产业传导→业绩兑现</div>
+
+  <!-- 风电逻辑链 -->
+  <div style="margin-bottom:24px;">
+    <div style="font-weight:700;font-size:16px;margin-bottom:12px;color:var(--blue-dark);">🌬️ 风电板块逻辑链</div>
+    <div class="flow-chart">
+      <div class="flow-node">英国取消关税</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">出口成本下降</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">订单增长</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">业绩提升</div>
+    </div>
+    <div class="flow-chart">
+      <div class="flow-node">→</div>
+      <div class="flow-arrow"></div>
+      <div class="flow-node">股价反应</div>
+    </div>
+  </div>
+
+  <!-- 核聚变逻辑链 -->
+  <div style="margin-bottom:24px;">
+    <div style="font-weight:700;font-size:16px;margin-bottom:12px;color:var(--orange-dark);">☢️ 核聚变板块逻辑链</div>
+    <div class="flow-chart">
+      <div class="flow-node orange">三倍核能宣言</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node orange">国家战略支持</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node orange">技术突破加速</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node orange">商业化推进</div>
+    </div>
+    <div class="flow-chart">
+      <div class="flow-node">→</div>
+      <div class="flow-arrow"></div>
+      <div class="flow-node orange">估值重塑</div>
+    </div>
+  </div>
+
+  <!-- 石油化工逻辑链 -->
+  <div style="margin-bottom:24px;">
+    <div style="font-weight:700;font-size:16px;margin-bottom:12px;color:var(--green-dark);">🛢️ 石油化工板块逻辑链</div>
+    <div class="flow-chart">
+      <div class="flow-node green">LNG工厂停摆</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node green">供应骤减</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node green">价格飙升</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node green">盈利改善</div>
+    </div>
+    <div class="flow-chart">
+      <div class="flow-node">→</div>
+      <div class="flow-arrow"></div>
+      <div class="flow-node green">短期波动</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 第九章：关键假设与验证 ══ -->
+<div class="section" id="s9">
+  <div class="section-title"><span class="chapter-tag">第九章</span> 关键假设与验证</div>
+  <div class="section-subtitle">每板块3条关键假设及可靠性评估</div>
+
+  <!-- 风电假设 -->
+  <div style="margin-bottom:20px;">
+    <div style="font-weight:700;font-size:16px;margin-bottom:12px;color:var(--blue-dark);">🌬️ 风电板块关键假设</div>
+    <div class="assumption-row">
+      <div>1</div>
+      <div>英国取消风电关税政策落地，中国风电出口成本下降</div>
+      <div class="rel-high">高</div>
+      <div>政策明确，确定性高</div>
+    </div>
+    <div class="assumption-row">
+      <div>2</div>
+      <div>欧洲其他国家效仿英国，取消对华风电关税</div>
+      <div class="rel-mid">中</div>
+      <div>需观察后续政策动向</div>
+    </div>
+    <div class="assumption-row">
+      <div>3</div>
+      <div>全球风电装机量持续增长，中国风电企业受益</div>
+      <div class="rel-high">高</div>
+      <div>能源转型大趋势确定</div>
+    </div>
+  </div>
+
+  <!-- 核聚变假设 -->
+  <div style="margin-bottom:20px;">
+    <div style="font-weight:700;font-size:16px;margin-bottom:12px;color:var(--orange-dark);">☢️ 核聚变板块关键假设</div>
+    <div class="assumption-row">
+      <div>1</div>
+      <div>国家持续加大核聚变研发投入，政策支持力度不减</div>
+      <div class="rel-high">高</div>
+      <div>国家战略确定</div>
+    </div>
+    <div class="assumption-row">
+      <div>2</div>
+      <div>核聚变技术取得重大突破，商业化进程加速</div>
+      <div class="rel-mid">中</div>
+      <div>技术突破存在不确定性</div>
+    </div>
+    <div class="assumption-row">
+      <div>3</div>
+      <div>核聚变产业链公司获得大量订单，业绩兑现</div>
+      <div class="rel-mid">中</div>
+      <div>需关注订单落地情况</div>
+    </div>
+  </div>
+
+  <!-- 石油化工假设 -->
+  <div style="margin-bottom:20px;">
+    <div style="font-weight:700;font-size:16px;margin-bottom:12px;color:var(--green-dark);">🛢️ 石油化工板块关键假设</div>
+    <div class="assumption-row">
+      <div>1</div>
+      <div>LNG工厂停摆导致能源价格上涨，化工产品价格反弹</div>
+      <div class="rel-mid">中</div>
+      <div>事件驱动，持续性待观察</div>
+    </div>
+    <div class="assumption-row">
+      <div>2</div>
+      <div>能源价格上涨传导至下游，化工企业盈利改善</div>
+      <div class="rel-mid">中</div>
+      <div>存在滞后性</div>
+    </div>
+    <div class="assumption-row">
+      <div>3</div>
+      <div>LNG工厂在3-6个月内恢复，价格回落</div>
+      <div class="rel-high">高</div>
+      <div>停摆属短期事件</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 第十章：交叉验证与质量自检 ══ -->
+<div class="section" id="s10">
+  <div class="section-title"><span class="chapter-tag">第十章</span> 交叉验证与质量自检</div>
+  <div class="section-subtitle">6条质量自检+组合仓位建议</div>
+
+  <div class="check-grid">
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div>
+        <div class="check-q">数据完整性检查</div>
+        <div class="check-detail">59只涨停股，股票代码全部6位格式，涨停原因统计准确</div>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div>
+        <div class="check-q">板块统计准确性</div>
+        <div class="check-detail">前三板块（风电7只、核聚变5只、石油化工4只），排除"其他"类别</div>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div>
+        <div class="check-q">事件分析深度</div>
+        <div class="check-detail">每个板块4条事件要点+4条理由分析，置信度评估</div>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div>
+        <div class="check-q">产业链挖掘完整性</div>
+        <div class="check-detail">TOP2板块，每板块3个子链，每链3只股，总计18只股票</div>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div>
+        <div class="check-q">操作方案可执行性</div>
+        <div class="check-detail">买入时机、仓位分配、止损止盈、三情景预案完整</div>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div>
+        <div class="check-q">风险分析多维度</div>
+        <div class="check-detail">高/中/低三类风险各2个，对冲策略明确</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div style="margin-top:20px;padding:20px;background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(168,85,247,.1));border-radius:12px;border:1px solid #e2e8f0;">
+    <div style="font-size:20px;font-weight:700;margin-bottom:16px;text-align:center;">💰 组合仓位建议</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+      <div style="padding:12px;background:#fff;border-radius:10px;border:1px solid #e2e8f0;">
+        <div style="font-weight:700;color:var(--blue-dark);margin-bottom:8px;">🌬️ 风电板块</div>
+        <div style="font-size:24px;font-weight:900;color:var(--blue);margin-bottom:4px;">45%</div>
+        <div style="font-size:13px;color:var(--gray);">中期持有，关注出口进展</div>
+      </div>
+      <div style="padding:12px;background:#fff;border-radius:10px;border:1px solid #e2e8f0;">
+        <div style="font-weight:700;color:var(--orange-dark);margin-bottom:8px;">☢️ 核聚变板块</div>
+        <div style="font-size:24px;font-weight:900;color:var(--orange);margin-bottom:4px;">40%</div>
+        <div style="font-size:13px;color:var(--gray);">中长期持有，关注技术突破</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;padding:12px;background:#fff;border-radius:10px;border:1px solid #e2e8f0;">
+      <div style="font-weight:700;color:var(--green-dark);margin-bottom:8px;">🛢️ 石油化工板块</div>
+      <div style="font-size:24px;font-weight:900;color:var(--green);margin-bottom:4px;">15%</div>
+      <div style="font-size:13px;color:var(--gray);">短期持有，关注LNG工厂恢复情况</div>
+    </div>
+    <div style="margin-top:16px;padding:10px;background:rgba(255,255,255,.9);border-radius:8px;">
+      <div style="font-weight:700;color:var(--dark);margin-bottom:6px;">⚠️ 风险控制提示</div>
+      <div style="font-size:13px;">
+        总仓位控制在80%以内，留20%现金应对不确定性。严格执行止损纪律，避免全仓追高。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Footer ══ -->
+<div class="footer">
+  <p>📈 2026年03月13日 股票深度复盘分析报告 V3.0</p>
+  <p>作者：中原庄稼汉 | 版权声明：未经作者授权禁止转发</p>
+  <p style="margin-top:8px;font-size:12px;opacity:.7;">本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+</div>
+
+</div>
+</body>
+</html>
